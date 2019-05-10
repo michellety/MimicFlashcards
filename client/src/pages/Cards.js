@@ -7,29 +7,28 @@ import { Col, Row, Container } from "../components/Grid";
 import { List, ListItem } from "../components/List";
 import { Input, TextArea, FormBtn } from "../components/Form";
 
-class Books extends Component {
+class Cards extends Component {
   state = {
-    books: [],
-    title: "",
-    author: "",
-    synopsis: ""
+    cards: [],
+    word: "",
+    translated: ""
   };
 
   componentDidMount() {
-    this.loadBooks();
+    this.loadCards();
   }
 
-  loadBooks = () => {
-    API.getBooks()
+  loadCards = () => {
+    API.getCards()
       .then(res =>
-        this.setState({ books: res.data, title: "", author: "", synopsis: "" })
+        this.setState({ cards: res.data, word: "", translated: "" })
       )
       .catch(err => console.log(err));
   };
 
-  deleteBook = id => {
-    API.deleteBook(id)
-      .then(res => this.loadBooks())
+  deleteCard = id => {
+    API.deleteCard(id)
+      .then(res => this.loadCards())
       .catch(err => console.log(err));
   };
 
@@ -42,13 +41,12 @@ class Books extends Component {
 
   handleFormSubmit = event => {
     event.preventDefault();
-    if (this.state.title && this.state.author) {
-      API.saveBook({
-        title: this.state.title,
-        author: this.state.author,
-        synopsis: this.state.synopsis
+    if (this.state.word && this.state.translated) {
+      API.saveCard({
+        word: this.state.word,
+        translated: this.state.translated
       })
-        .then(res => this.loadBooks())
+        .then(res => this.loadCards())
         .catch(err => console.log(err));
     }
   };
@@ -59,49 +57,49 @@ class Books extends Component {
         <Row>
           <Col size="md-6">
             <Jumbotron>
-              <h1>What Books Should I Read?</h1>
+              <h1>Language Cards to Practice</h1>
             </Jumbotron>
             <form>
               <Input
-                value={this.state.title}
+                value={this.state.word}
                 onChange={this.handleInputChange}
-                name="title"
-                placeholder="Title (required)"
+                name="word"
+                placeholder="Word (required)"
               />
-              <Input
-                value={this.state.author}
+               <Input
+                value={this.state.translated}
                 onChange={this.handleInputChange}
-                name="author"
-                placeholder="Author (required)"
+                name="translated"
+                placeholder="Translated (required)"
               />
-              <TextArea
+              {/* <TextArea
                 value={this.state.synopsis}
                 onChange={this.handleInputChange}
                 name="synopsis"
                 placeholder="Synopsis (Optional)"
-              />
+              />  */}
               <FormBtn
-                disabled={!(this.state.author && this.state.title)}
+                disabled={!(this.state.word && this.state.translated)}
                 onClick={this.handleFormSubmit}
               >
-                Submit Book
+                Submit
               </FormBtn>
             </form>
           </Col>
           <Col size="md-6 sm-12">
             <Jumbotron>
-              <h1>Books On My List</h1>
+              <h1>Cards to Review</h1>
             </Jumbotron>
-            {this.state.books.length ? (
+            {this.state.cards.length ? (
               <List>
-                {this.state.books.map(book => (
-                  <ListItem key={book._id}>
-                    <Link to={"/books/" + book._id}>
+                {this.state.cards.map(card => (
+                  <ListItem key={card._id}>
+                    <Link to={"/cards/" + card._id}>
                       <strong>
-                        {book.title} by {book.author}
+                        {card.word} meaning {card.translated}
                       </strong>
                     </Link>
-                    <DeleteBtn onClick={() => this.deleteBook(book._id)} />
+                    <DeleteBtn onClick={() => this.deleteCard(card._id)} />
                   </ListItem>
                 ))}
               </List>
@@ -115,4 +113,4 @@ class Books extends Component {
   }
 }
 
-export default Books;
+export default Cards;
