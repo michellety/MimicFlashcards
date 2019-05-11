@@ -5,7 +5,7 @@ import API from "../utils/API";
 import { Link } from "react-router-dom";
 import { Col, Row, Container } from "../components/Grid";
 import { List, ListItem } from "../components/List";
-import { Input, TextArea, FormBtn } from "../components/Form";
+import { Input, FormBtn } from "../components/Form";
 
 class Cards extends Component {
   state = {
@@ -54,6 +54,11 @@ class Cards extends Component {
   render() {
     return (
       <Container fluid>
+      <Row>
+          <Col size="md-2">
+            <Link to="/login">← Log Out</Link>
+          </Col>
+        </Row>
         <Row>
           <Col size="md-6">
             <Jumbotron>
