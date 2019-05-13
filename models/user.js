@@ -25,8 +25,8 @@ const UserSchema = new mongoose.Schema({
     { 
       // Store ObjectIds in the array
       type: Schema.Types.ObjectId, 
-      //The ObjectIds will refer to the ids in the Cardstack model
-      ref: "Cardstack" 
+      //The ObjectIds will refer to the ids in the Card model
+      ref: "Card" 
     }
   ]
 });

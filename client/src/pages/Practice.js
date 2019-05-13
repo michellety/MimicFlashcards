@@ -4,7 +4,7 @@ import { Col, Row, Container } from "../components/Grid";
 import Jumbotron from "../components/Jumbotron";
 import API from "../utils/API";
 
-class Detail extends Component {
+class Practice extends Component {
   state = {
     card: {}
   };
@@ -26,6 +26,9 @@ class Detail extends Component {
               <h3>
                 {this.state.card.word}
               </h3>
+              <h3>
+                  {this.state.card.translated}
+              </h3>
             </Jumbotron>
           </Col>
         </Row>
@@ -40,4 +43,4 @@ class Detail extends Component {
   }
 }
 
-export default Detail;
+export default Practice;

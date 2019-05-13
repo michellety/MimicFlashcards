@@ -61,10 +61,9 @@ class Cards extends Component {
         </Row>
         <Row>
           <Col size="md-6">
+          <h1>Create More Cards</h1>
             <Jumbotron>
-              <h1>Language Cards to Practice</h1>
-            </Jumbotron>
-            <form>
+              <form>
               <Input
                 value={this.state.word}
                 onChange={this.handleInputChange}
@@ -77,12 +76,7 @@ class Cards extends Component {
                 name="translated"
                 placeholder="Translated (required)"
               />
-              {/* <TextArea
-                value={this.state.synopsis}
-                onChange={this.handleInputChange}
-                name="synopsis"
-                placeholder="Synopsis (Optional)"
-              />  */}
+          
               <FormBtn
                 disabled={!(this.state.word && this.state.translated)}
                 onClick={this.handleFormSubmit}
@@ -90,18 +84,22 @@ class Cards extends Component {
                 Submit
               </FormBtn>
             </form>
+            </Jumbotron>
+            
           </Col>
           <Col size="md-6 sm-12">
+          <h1>Review</h1>
             <Jumbotron>
-              <h1>Cards to Review</h1>
+              <Link to={"/practice"}>Practice here</Link>
             </Jumbotron>
+            <h3>Card Stack</h3>
             {this.state.cards.length ? (
               <List>
                 {this.state.cards.map(card => (
                   <ListItem key={card._id}>
                     <Link to={"/cards/" + card._id}>
                       <strong>
-                        {card.word} meaning {card.translated}
+                        "{card.word}" translates to: "{card.translated}"
                       </strong>
                     </Link>
                     <DeleteBtn onClick={() => this.deleteCard(card._id)} />
@@ -109,7 +107,7 @@ class Cards extends Component {
                 ))}
               </List>
             ) : (
-              <h3>No Results to Display</h3>
+              <h3>No Cards Crated Yet!</h3>
             )}
           </Col>
         </Row>
