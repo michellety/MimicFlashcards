@@ -29,9 +29,6 @@ class Signup extends Component {
 
   onChange = key => e => this.setState({ [key]: e.target.value });
 
-  onClick = () => alert(this.state)
-
-
   render() {
     return (
       <Container fluid>

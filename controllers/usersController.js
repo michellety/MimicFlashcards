@@ -24,6 +24,7 @@ module.exports = {
         });
       });
     },
+    
     signup: function(req, res) {
       // validateEmailWithRegex(req.body.email)
       // if it is invalid

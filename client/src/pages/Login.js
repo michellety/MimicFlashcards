@@ -40,8 +40,6 @@ class Login extends Component {
 
   onChange = key => e => this.setState({ [key]: e.target.value });
 
-
-
   render() {
     return (
       <Container fluid>
