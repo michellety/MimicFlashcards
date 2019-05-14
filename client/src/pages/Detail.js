@@ -22,7 +22,7 @@ class Detail extends Component {
         <Row>
           <Col size="md-12">
             <Jumbotron>
-              <h1>Practice Page</h1>
+              <h1>Edit card</h1>
               <h3>
                 {this.state.card.word}
               </h3>
@@ -32,7 +32,7 @@ class Detail extends Component {
         
         <Row>
           <Col size="md-2">
-            <Link to="/">← Back To New Cards</Link>
+            <Link to="/cards">← Back To New Cards</Link>
           </Col>
         </Row>
       </Container>

@@ -6,6 +6,7 @@ import NoMatch from "./pages/NoMatch";
 import Practice from "./pages/Practice";
 import Login from "./pages/Login";
 import Signup from "./pages/Signup";
+import Home from "./pages/Home";
 import Nav from "./components/Nav";
 
 
@@ -18,7 +19,7 @@ function App() {
       <div>
         <Nav />
         <Switch>
-          <Route exact path="/" component={Cards} />
+          <Route exact path="/" component={Home} />
           <Route exact path="/cards" component={Cards} />
           <Route exact path="/cards/:id" component={Detail} />
           <Route exact path="/login" component={Login} />

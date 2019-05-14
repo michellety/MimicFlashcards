@@ -32,6 +32,8 @@ export default {
     return axios.post("/api/users/validate", { token: t });
   },
 
+  //for the practice page
+
 
 
 };
