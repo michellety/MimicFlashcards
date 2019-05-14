@@ -4,9 +4,9 @@ const mongoose = require("mongoose");
 const routes = require("./routes");
 const app = express();
 const PORT = process.env.PORT || 3001;
-// const passport = require('passport');
 
-// Define middleware here
+
+// Define middleware here, express can use json and send it to req.body
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 
@@ -18,12 +18,12 @@ if (process.env.NODE_ENV === "production") {
 app.use(routes);
 
 // Connect to the Mongo DB
-mongoose.connect(process.env.MONGODB_URI || "mongodb://localhost/languagecards");
+mongoose.connect(process.env.MONGODB_URI || "mongodb://localhost/languagecards")
+  .then(() => console.log("MongoDB Connected!"))
+  .catch(err => console.error(err));
 
-// Passport Config
-//require('./config/passport')(passport);
 
 // Start the API server
-app.listen(PORT, function() {
+app.listen(PORT, function () {
   console.log(`🌎  ==> API Server now listening on PORT ${PORT}!`);
 });

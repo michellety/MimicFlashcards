@@ -8,7 +8,8 @@ import Login from "./pages/Login";
 import Signup from "./pages/Signup";
 import Home from "./pages/Home";
 import Nav from "./components/Nav";
-
+import Navbar from './components/Navbar';
+import { CounterProvider } from './context';
 
 const initialState = { currentUser: {} };
 const UserContext = React.createContext(initialState);
@@ -16,7 +17,9 @@ const UserContext = React.createContext(initialState);
 function App() {
   return (
     <Router>
+      <CounterProvider>
       <div>
+        <Navbar />
         <Nav />
         <Switch>
           <Route exact path="/" component={Home} />
@@ -28,6 +31,7 @@ function App() {
           <Route component={NoMatch} />
         </Switch>
       </div>
+     </CounterProvider> 
     </Router>
   );
 }
