@@ -2,6 +2,6 @@
     background: navy;
 }
 
-.navbar-brand {
+.navbar-light, .nav-link {
     color: whitesmoke;
 }

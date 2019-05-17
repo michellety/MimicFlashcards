@@ -54,44 +54,45 @@ class Cards extends Component {
   render() {
     return (
       <Container fluid>
-      <Row>
+        <Row>
           <Col size="md-2">
             <Link to="/login">← Log Out</Link>
           </Col>
         </Row>
         <Row>
           <Col size="md-6">
-          <h1>Create More Cards</h1>
-            <Jumbotron>
-              <form>
-              <Input
-                value={this.state.word}
-                onChange={this.handleInputChange}
-                name="word"
-                placeholder="Word (required)"
-              />
-               <Input
-                value={this.state.translated}
-                onChange={this.handleInputChange}
-                name="translated"
-                placeholder="Translated (required)"
-              />
-          
-              <FormBtn
-                disabled={!(this.state.word && this.state.translated)}
-                onClick={this.handleFormSubmit}
-              >
-                Submit
-              </FormBtn>
-            </form>
-            </Jumbotron>
-            
-          </Col>
-          <Col size="md-6 sm-12">
           <h1>Review</h1>
             <Jumbotron>
               <Link to={"/practice"}>Practice here</Link>
             </Jumbotron>
+            
+          </Col>
+          <Col size="md-6 sm-12">
+          <h1>Create More Cards</h1>
+            <Jumbotron>
+              <form>
+                <Input
+                  value={this.state.word}
+                  onChange={this.handleInputChange}
+                  name="word"
+                  placeholder="Word (required)"
+                />
+                <Input
+                  value={this.state.translated}
+                  onChange={this.handleInputChange}
+                  name="translated"
+                  placeholder="Translated (required)"
+                />
+
+                <FormBtn
+                  disabled={!(this.state.word && this.state.translated)}
+                  onClick={this.handleFormSubmit}
+                >
+                  Submit
+              </FormBtn>
+              </form>
+            </Jumbotron>
+
             <h3>Card Stack</h3>
             {this.state.cards.length ? (
               <List>
@@ -107,8 +108,8 @@ class Cards extends Component {
                 ))}
               </List>
             ) : (
-              <h3>No Cards Crated Yet!</h3>
-            )}
+                <h3>No Cards Created Yet!</h3>
+              )}
           </Col>
         </Row>
       </Container>

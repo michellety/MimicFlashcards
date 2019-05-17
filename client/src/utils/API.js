@@ -33,7 +33,9 @@ export default {
   },
 
   //for the practice page
-
+  // getCurrentCards: function() {
+  //   return axios.get("api/current");
+  // }
 
 
 };

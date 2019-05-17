@@ -16,6 +16,7 @@ class Signup extends Component {
     const token = localStorage.getItem("current_user_token");
     if (token) {
       API.validateToken(token)
+      //redirects to the / route if there is no error 
         .then(() => this.props.history.push("/"))
         .catch(() => localStorage.removeItem("current_user_token"));
     }
