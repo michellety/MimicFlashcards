@@ -49,7 +49,7 @@ class Practice extends Component {
               <div className="row">
                 <FlashCard word={this.state.currentCard.word} translated={this.state.currentCard.translated} />
               </div>
-              <NextBtn onClick={this.getCurrentCard} />            
+              <NextBtn onClick={this.nextCard} />            
           </Col>
         </Row>
 

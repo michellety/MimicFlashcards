@@ -21,7 +21,7 @@
 
 .cardBody:hover{
   transform: rotateY(180deg);
-  transition: all 0.5s ease;
+  transition: all 0.8s ease;
 }
 
 .front {
@@ -41,7 +41,7 @@
   min-height: 400px;
   position: absolute;
   text-align: center;
-  background: green;
+  background: lightslategray;
   border-radius: 20px;
   backface-visibility: hidden;
   transform: rotateY(180deg);

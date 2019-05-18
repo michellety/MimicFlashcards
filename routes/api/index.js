@@ -5,6 +5,8 @@ const practiceRoutes = require("./practice");
 
 router.use("/cards", cardRoutes);
 
+// router.use(isAuthenticated).use("")
+
 router.use("/users", userRoutes);
 
 router.use("/practice", practiceRoutes);

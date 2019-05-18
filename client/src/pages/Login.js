@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import { Col, Row, Container } from "../components/Grid";
 import Jumbotron from "../components/Jumbotron";
 import API from "../utils/API";
+import { Input, FormBtn } from "../components/Form";
 
 class Login extends Component {
 
@@ -44,29 +45,34 @@ class Login extends Component {
     return (
       <Container fluid>
         <Row>
-          <Col size="md-12">
+          <Col size="md-6 sm-12">
             <Jumbotron>
+              <form>
               <h1>
                 Login Page
               </h1>
-              <input
+              <Input
                 type="text"
                 value={this.state.email}
                 label="email"
                 onChange={this.onChange("email")}
               />
+              
 
-              <input
+              <Input
                 type="password"
                 value={this.state.password}
                 label="password"
                 onChange={this.onChange("password")}
               />
+           
 
-              <button onClick={this.onSubmit} disabled={!Boolean(this.state.email && this.state.password)}>Log in</button>
+              <FormBtn onClick={this.onSubmit} disabled={!Boolean(this.state.email && this.state.password)}>Submit</FormBtn>
 
-
+              </form>
             </Jumbotron>
+
+
           </Col>
         </Row>
 

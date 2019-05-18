@@ -9,6 +9,7 @@ import Signup from "./pages/Signup";
 import Home from "./pages/Home";
 import Nav from "./components/Nav";
 import { CounterProvider } from './context';
+import "./App.css";
 
 // const initialState = { currentUser: {} };
 // const UserContext = React.createContext(initialState);

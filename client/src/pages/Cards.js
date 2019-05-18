@@ -61,14 +61,14 @@ class Cards extends Component {
         </Row>
         <Row>
           <Col size="md-6">
-          <h1>Review</h1>
+            <h1>Review</h1>
             <Jumbotron>
               <Link to={"/practice"}>Practice here</Link>
             </Jumbotron>
-            
+
           </Col>
           <Col size="md-6 sm-12">
-          <h1>Create More Cards</h1>
+            <h1>Create More Cards</h1>
             <Jumbotron>
               <form>
                 <Input
@@ -86,12 +86,17 @@ class Cards extends Component {
 
                 <FormBtn
                   disabled={!(this.state.word && this.state.translated)}
-                  onClick={this.handleFormSubmit}
-                >
+                  onClick={this.handleFormSubmit}>
                   Submit
-              </FormBtn>
+                </FormBtn>
+
               </form>
             </Jumbotron>
+          </Col>
+        </Row>
+
+        <Row>
+          <Col size="md-6 sm-12">
 
             <h3>Card Stack</h3>
             {this.state.cards.length ? (
