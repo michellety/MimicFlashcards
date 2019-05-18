@@ -1,9 +1,9 @@
 import React from "react";
 import "./style.css";
 
-function NextBtn() {
+function NextBtn(props) {
   return (
-    <button className="next-btn">
+    <button className="next-btn" onClick={props.onClick}>
       Next Card
     </button>
   );

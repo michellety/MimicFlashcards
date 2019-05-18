@@ -34,22 +34,20 @@ class Practice extends Component {
   nextCard = () => {
     const allCards = this.state.cards;
     this.setState({
-      cards: allCards,
       currentCard: this.getRandomCard(allCards)
-
     })
   }
 
   render() {
     return (
       <Container fluid>
-         <Row>
+        <Row>
           <Col size="md-12">
-            <h1>Practice Page</h1>            
-              <div className="row">
-                <FlashCard word={this.state.currentCard.word} translated={this.state.currentCard.translated} />
-              </div>
-              <NextBtn onClick={this.nextCard} />            
+            <h1>Practice Page</h1>
+            <div className="row">
+              <FlashCard word={this.state.currentCard.word} translated={this.state.currentCard.translated} />
+            </div>
+            <NextBtn onClick={this.nextCard} />
           </Col>
         </Row>
 
