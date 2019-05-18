@@ -1,6 +1,52 @@
-.cardBody {
-  background: navy;
-  color: white;
-  border: pink;
-  
+.card {
+  min-width: 500px;
+  min-height: 400px;
+  margin: auto;
+  border-radius: 20px;
+  transition: ease-in;
+  perspective: 800px;
+  position: relative;
+  cursor: pointer;  
 }
+
+ .cardBody {
+  min-width: 500px;
+  min-height: 400px;
+  text-align: center;
+  transform-style: preserve-3d;
+  transition: all 0.4s ease;
+  position: absolute;
+}
+
+
+.cardBody:hover{
+  transform: rotateY(180deg);
+  transition: all 0.5s ease;
+}
+
+.front {
+  padding: 165px;
+  position: absolute;
+  min-width: 500px;
+  min-height: 400px;
+  text-align: center;
+  background: grey;
+  border-radius: 20px;
+  backface-visibility: hidden;
+  overflow: hidden;
+}
+.back {
+  padding: 165px;
+  min-width: 500px;
+  min-height: 400px;
+  position: absolute;
+  text-align: center;
+  background: green;
+  border-radius: 20px;
+  backface-visibility: hidden;
+  transform: rotateY(180deg);
+}
+
+  
+  
+   

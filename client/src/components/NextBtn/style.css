@@ -1,4 +1,19 @@
-.delete-btn {
+.next-btn {
   float: right;
-  color: #e74944;
+  color: white;
+  background: navy;
+  border-radius: 20px;
+  cursor: pointer;
+  border: 1px solid darkgray;
+  padding: 10px;
+}
+
+.next-btn:hover {
+  background: white;
+  color: navy;
+}
+
+.next-btn:active {
+  background-color: darkgray;
+  transform: translateY(4px);
 }

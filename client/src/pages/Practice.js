@@ -1,16 +1,9 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import { Col, Row, Container } from "../components/Grid";
-import Jumbotron from "../components/Jumbotron";
 import API from "../utils/API";
 import FlashCard from "../components/FlashCard";
-// import NextBtn from "../components/NextBtn";
-
-//as page loads
-//get one object from the cards array
-//render to page 
-//then make next cards as a function as itself
-//which will randomize and replace the current card
+import NextBtn from "../components/NextBtn";
 
 class Practice extends Component {
   state = {
@@ -19,7 +12,6 @@ class Practice extends Component {
     translated: "",
     currentCard: {}
   };
-
 
   componentDidMount() {
     this.getCurrentCard();
@@ -33,51 +25,37 @@ class Practice extends Component {
       }).catch(err => console.log(err));
   };
 
-  // current = () => {
-  //   API.getCurrentCards()
-  //     .then(res =>
-  //       this.setState({
-  //         word: this.state.word,
-  //         translated: this.state.translated,
-  //         currentCard: this.getRandomCard()
-  //       })
-  //     ).catch(err => console.log(err));
-  // };
-
-  //here currentCards is the array that holds the cards 
-  getRandomCard(currentCards) {
-    var current = currentCards[Math.floor(Math.random() * currentCards.length)];
+  //here allCards is the array that holds the cards 
+  getRandomCard = (allCards) => {
+    var current = allCards[Math.floor(Math.random() * allCards.length)];
     return (current);
-  }
+  };
 
-  // updateCard() {
-  //   const currentCard = this.state.cards;
-  //   this.setState({
-  //     currentCard: this.getRandomCard(currentCard)
-  //   })
-  // }
+  nextCard = () => {
+    const allCards = this.state.cards;
+    this.setState({
+      cards: allCards,
+      currentCard: this.getRandomCard(allCards)
+
+    })
+  }
 
   render() {
     return (
       <Container fluid>
-        <Row>
+         <Row>
           <Col size="md-12">
-            <h1>Practice Page</h1>
-            <Jumbotron>
+            <h1>Practice Page</h1>            
               <div className="row">
                 <FlashCard word={this.state.currentCard.word} translated={this.state.currentCard.translated} />
               </div>
-
-              <div className="button">
-                {/* <NextBtn nextCard={this.updateCard} /> */}
-              </div>
-            </Jumbotron>
+              <NextBtn onClick={this.getCurrentCard} />            
           </Col>
         </Row>
 
         <Row>
           <Col size="md-2">
-            <Link to="/cards">← Back To New Cards</Link>
+            <Link to="/cards">← Create New Cards</Link>
           </Col>
         </Row>
       </Container>
