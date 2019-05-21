@@ -36,7 +36,7 @@ class Practice extends Component {
     this.setState({
       currentCard: this.getRandomCard(allCards)
     })
-  }
+  };
 
   render() {
     return (

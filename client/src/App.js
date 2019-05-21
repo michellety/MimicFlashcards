@@ -8,16 +8,12 @@ import Login from "./pages/Login";
 import Signup from "./pages/Signup";
 import Home from "./pages/Home";
 import Nav from "./components/Nav";
-import { CounterProvider } from './context';
 import "./App.css";
-
-// const initialState = { currentUser: {} };
-// const UserContext = React.createContext(initialState);
 
 function App() {
   return (
     <Router>
-      <CounterProvider>
+   
       <div>
         <Nav />
         <Switch>
@@ -30,7 +26,7 @@ function App() {
           <Route component={NoMatch} />
         </Switch>
       </div>
-     </CounterProvider> 
+
     </Router>
   );
 }

@@ -1,10 +1,8 @@
 import React from "react";
 import "./style.css";
-// import { CounterContext } from '../../context.js';
 import { Link } from 'react-router-dom';
 
 const Nav = () => {
-  // const { currentUser } = useContext(CounterContext);
   return (
 
     <nav className="navbar navbar-dark navbar-expand-md bg-faded justify-content-center">

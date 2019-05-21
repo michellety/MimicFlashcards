@@ -1,5 +1,5 @@
 const db = require("../models");
-// const jwt = require("jsonwebtoken");
+const jwt = require("jsonwebtoken");
 
 // Defining methods for the cardsController
 module.exports = {
