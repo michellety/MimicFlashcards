@@ -1,87 +1,95 @@
-import React, { Component } from "react";
+import React from "react";
 import { Link } from "react-router-dom";
 import { Col, Row, Container } from "../components/Grid";
 import Jumbotron from "../components/Jumbotron";
 import API from "../utils/API";
 import { Input, FormBtn } from "../components/Form";
+import UserContext from "../utils/UserContext";
 
-class Login extends Component {
+class Login extends React.Component {
 
   state = {
     email: "",
     password: "",
+    currentUser: null,
+    error: null
   };
 
-  componentDidMount() {
-    const token = localStorage.getItem("current_user_token");
-    if (token) {
-      API.validateToken(token)
-        .then(() => this.props.history.push("/"))
-        .catch(() => localStorage.removeItem("current_user_token"));
-    }
+  handleChange = (event) => {
+    const { name, value } = event.target;
+    this.setState({
+      [name]: value
+    })
+  }
+
+  handleLogin = (onLogin) => {
+    const { history } = this.props;
+    const { email, password } = this.state;
+    API.login({ email, password })
+      .then(res => {
+        //localStorage.setItem("id_token", res.data.token)
+        onLogin(res.data);
+        console.log(res.data)
+        history.push("/cards");
+      })
+      .catch(err => {
+        console.log("error: ", err);
+        this.setState({
+          error: "Invalid password and email combination"
+        })
+      });
   };
-
-  onSubmit = () => {
-    API.login(this.state)
-      .then(res => localStorage.setItem("current_user_token", res.data.token))
-      .catch(err => console.log(err));
-  };
-
-
-  //   state = {
-  //     card: {}
-  //   };
-  // When this component mounts, grab the card with the _id of this.props.match.params.id
-  // e.g. localhost:3000/cards/599dcb67f0f16317844583fc
-  //   componentDidMount() {
-  //     API.getCard(this.props.match.params.id)
-  //       .then(res => this.setState({ card: res.data }))
-  //       .catch(err => console.log(err));
-  //   }
-
-  onChange = key => e => this.setState({ [key]: e.target.value });
 
   render() {
+    const { email, password } = this.state;
     return (
-      <Container fluid>
-        <Row>
-          <Col size="md-6 sm-12">
-            <Jumbotron>
-              <form>
-              <h1>
-                Login Page
-              </h1>
-              <Input
-                type="text"
-                value={this.state.email}
-                label="email"
-                onChange={this.onChange("email")}
-              />
-              
+      <UserContext.Consumer>
 
-              <Input
-                type="password"
-                value={this.state.password}
-                label="password"
-                onChange={this.onChange("password")}
-              />
-           
+        {({ onLogin }) => (
 
-              <FormBtn onClick={this.onSubmit} disabled={!Boolean(this.state.email && this.state.password)}>Submit</FormBtn>
+          <Container fluid>
+            <Row>
+              <Col size="md-6 sm-12">
+                <Jumbotron>
+                  <div>
+                    <h1>Login Page</h1>
+                    <Input
+                      type="text"
+                      value={email}
+                      name="email"
+                      placeholder="Email (required)"
+                      onChange={this.handleChange}
+                    />
 
-              </form>
-            </Jumbotron>
+                    <Input
+                      type="password"
+                      value={password}
+                      name="password"
+                      placeholder="Password (required)"
+                      onChange={this.handleChange}
+                    />
 
+                    {this.state.error ? (
+                      <span className="alert">{this.state.error}</span>
+                    ): null}
 
-          </Col>
-        </Row>
+                    <FormBtn onClick={() => this.handleLogin(onLogin)} disabled={!Boolean(this.state.email && this.state.password)}>Submit</FormBtn>
 
-        <Row>
-          <Col size="md-2">
-            <Link to="/signup">← New user? Sign up here </Link>
-          </Col>
-        </Row>
-      </Container>
+                  </div>
+                </Jumbotron>
+              </Col>
+            </Row>
+
+            <Row>
+              <Col size="md-2">
+                <Link to="/signup">← New user? Sign up here </Link>
+              </Col>
+            </Row>
+          </Container>
+
+        )}
+        
+      </UserContext.Consumer>
     );
   }
 }

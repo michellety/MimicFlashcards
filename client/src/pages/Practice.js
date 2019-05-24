@@ -4,8 +4,12 @@ import { Col, Row, Container } from "../components/Grid";
 import API from "../utils/API";
 import FlashCard from "../components/FlashCard";
 import NextBtn from "../components/NextBtn";
+import UserContext from "../utils/UserContext"
+
 
 class Practice extends Component {
+  static contextType = UserContext;
+
   state = {
     cards: [],
     word: "",
@@ -14,11 +18,18 @@ class Practice extends Component {
   };
 
   componentDidMount() {
-    this.getCurrentCard();
+    const { user } = this.context;
+    console.log(user);
+    if(!user){
+      this.props.history.push("/login")
+    } else {
+      this.getCurrentCard(user.token);
+    }
+   
   }
 
-  getCurrentCard = () => {
-    API.getCards()
+  getCurrentCard = (token) => {
+    API.getCards(token)
       .then(res => {
         console.log(res.data);
         this.setState({ cards: res.data, word: "", translated: "", currentCard: this.getRandomCard(res.data) })

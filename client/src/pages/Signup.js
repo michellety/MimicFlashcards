@@ -1,37 +1,33 @@
-import React, { Component } from "react";
+import React from "react";
 import { Link } from "react-router-dom";
 import { Col, Row, Container } from "../components/Grid";
 import Jumbotron from "../components/Jumbotron";
 import API from "../utils/API";
 import { Input, FormBtn } from "../components/Form";
 
-class Signup extends Component {
+class Signup extends React.Component {
   state = {
     email: "",
     password: ""
   };
 
-  // When this component mounts, grab the card with the _id of this.props.match.params.id
-  // e.g. localhost:3000/cards/599dcb67f0f16317844583fc
-  componentDidMount() {
-    const token = localStorage.getItem("current_user_token");
-    if (token) {
-      API.validateToken(token)
-        //redirects to the / route if there is no error 
-        .then(() => this.props.history.push("/"))
-        .catch(() => localStorage.removeItem("current_user_token"));
-    }
+  handleChange = (event) => {
+    const { name, value } = event.target;
+    this.setState({
+      [name] : value
+    });
   }
 
-  onSubmit = () => {
-    API.signup(this.state)
-      .then(res => localStorage.setItem("current_user_token", res.data.token))
-      .catch(err => console.log(err));
-  };
-
-  onChange = key => e => this.setState({ [key]: e.target.value });
-
+  onSignup = () => {
+    const { history } = this.props;
+    const { email, password } = this.state;
+    API.signup({ email, password })
+      .then(res => history.push("/login"))
+      .catch(err => console.log("error: ", err));
+  }
+ 
   render() {
+    const { email, password } = this.state;
     return (
       <Container fluid>
         <Row>
@@ -40,23 +36,25 @@ class Signup extends Component {
               <h1>
                 Sign- Up
               </h1>
-              <form>
+              <div>
                 <Input
                   type="text"
-                  value={this.state.email}
-                  label="email"
-                  onChange={this.onChange("email")}
+                  value={email}
+                  name="email"
+                  placeholder="Email (required)"
+                  onChange={this.handleChange}
                 />
 
                 <Input
                   type="password"
-                  value={this.state.password}
-                  label="password"
-                  onChange={this.onChange("password")}
+                  value={password}
+                  name="password"
+                  placeholder="Password (required)"
+                  onChange={this.handleChange}
                 />
-                <FormBtn onClick={this.onSubmit} disabled={!this.state.email || !this.state.password}>SignUp</FormBtn>
+                <FormBtn onClick={this.onSignup} disabled={!this.state.email || !this.state.password}>SignUp</FormBtn>
 
-              </form>
+              </div>
             </Jumbotron>
             
             <Link to="/login">← Returning user? Login here </Link>
