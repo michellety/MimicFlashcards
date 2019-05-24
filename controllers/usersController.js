@@ -1,48 +1,53 @@
 const db = require("../models");
-var jwt = require("jsonwebtoken");
-const bcrypt = require('bcrypt');
-const saltRounds = 10;
+const bcrypt = require("bcrypt");
+const jwt = require("jsonwebtoken");
 
-
+// Defining methods for the usersController
 module.exports = {
-  validateToken: function (req, res) {
-    return jwt.verify(req.body.token, 'shhhhh', function (err, decoded) {
-      if (err) {
-        return res.status(400).send({ msg: "invalid token" });
-      }
-      return res.status(200).send({ msg: "valid token" });
-    });
-  },
-
   login: function (req, res) {
-    db.User.findOne({ where: { email: req.body.email } }).then(u => {
-      if (!u) res.status(400).send({ msg: 'Invalid Email or Password' });
+    const { email, password } = req.body;
 
-      bcrypt.compare(req.body.password, u.password, function (err, bRes) {
-        if (!bRes) res.status(400).send({ msg: 'Invalid Email or Password' });
-        var token = jwt.sign({ email: u.email }, 'shhhhh');
-        res.json({ email: u.email, token: token });
-      });
-    });
+    db.User
+      .findOne({ email })
+      .then(dbModel => {
+        if (!dbModel) {
+          return res.status(404).json({
+            error: "Email and password must match"
+          });
+        }
+
+        bcrypt.compare(password, dbModel.password, function (err, same) {
+          if (err) {
+            return res.status(500).json({
+              error: "Something went wrong"
+            })
+          }
+          if (!same) {
+            return res.status(404).json({
+              error: "Email and password must match"
+            });
+          } else {
+            const { email, _id: id } = dbModel;
+            const token = jwt.sign({ email, id }, process.env.SERVER_SECRET);
+            return res.json({ id: dbModel._id, email: dbModel.email, token })
+          }
+        })
+      })
+      .catch(err => res.status(422).json(err));
   },
 
   signup: function (req, res) {
-    // validateEmailWithRegex(req.body.email)
-    // if it is invalid
-    // return res.status(400).send({msg: "Invalid Email or Password"})
-    db.User.findOne({ where: { email: req.body.email } }).then(u => {
-      if (u) res.status(400).send({ msg: 'Invalid Email or Password' });
-      bcrypt.genSalt(saltRounds, function (err, salt) {
-        bcrypt.hash(req.body.password, salt, function (err, hash) {
-          db.User.create({
-            email: req.body.email,
-            password: hash,
-          }).then(function (user) {
-            var token = jwt.sign({ email: user.email }, 'shhhhh');
-            res.json({ email: user.email, token: token });
-          });
-        });
-      });
-    });
-  },
+    const { email, password } = req.body;
+    bcrypt.hash(password, 10, function (err, hash) {
+      const user = {
+        email,
+        password: hash
+      }
+
+      db.User
+        .create(user)
+        .then(dbModel => res.json(dbModel))
+        .catch(err => res.status(422).json(err));
+    })
+  }
 };
