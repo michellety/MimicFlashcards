@@ -2,6 +2,7 @@ import axios from "axios";
 
 export default {
   // Gets all cards
+  //include token for validation
   getCards: function (token) {
     return axios.get("/api/cards", {
       headers: {
@@ -10,6 +11,7 @@ export default {
     });
   },
   // Gets the card with the given id
+  //token required to use the api route
   getCard: function (id, token) {
     return axios.get("/api/cards/" + id, { headers: {"Authorization": `Bearer ${token}`}});
   },
@@ -31,16 +33,6 @@ export default {
   login: function(data) {
     return axios.post("/api/users/login", data);
   },
-
-  // validateToken: function(t) {
-  //   return axios.post("/api/users/validate", { token: t });
-  // },
-
-  //for the practice page
-  // getCurrentCards: function() {
-  //   return axios.get("api/current");
-  // }
-  
 
   // translator: function() {
   //   return axios.get("/api/translate");
