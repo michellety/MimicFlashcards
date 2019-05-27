@@ -43,7 +43,6 @@ module.exports = {
         email,
         password: hash
       }
-
       db.User
         .create(user)
         .then(dbModel => res.json(dbModel))

@@ -27,7 +27,6 @@ class Login extends React.Component {
     const { email, password } = this.state;
     API.login({ email, password })
       .then(res => {
-        //localStorage.setItem("id_token", res.data.token)
         onLogin(res.data);
         console.log(res.data)
         history.push("/cards");

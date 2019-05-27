@@ -4,11 +4,6 @@ import { Link } from 'react-router-dom';
 import UserContext from "../../utils/UserContext";
 
 function Nav() {
-  ///make a validate function that makes a call to the api, checks token 
-  //gets token from local storage when component did mount
-  //api route
-  //
-  console.log(localStorage.getItem("id_token"))
   
   return (
 
