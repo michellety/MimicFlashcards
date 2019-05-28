@@ -9,6 +9,7 @@ import { Input, FormBtn } from "../components/Form";
 import { Redirect } from 'react-router-dom';
 import UserContext from "../utils/UserContext"
 
+
 class Cards extends Component {
   static contextType = UserContext;
 
@@ -24,7 +25,6 @@ class Cards extends Component {
     if (user) {
       this.loadCards(user.token);
     }
-    //need token to access the api
   }
 
   // translateWord = () => {
@@ -80,21 +80,18 @@ class Cards extends Component {
           return (
             <Container fluid>
               <Row>
-                <Col size="md-2">
-                  <Link to="/login">← Log Out</Link>
-                </Col>
-              </Row>
-              <Row>
-                <Col size="md-6">
-                  <h1>Review for {user.email}</h1>
+                <Col size="md-6 sm-12">
+
                   <Jumbotron>
-                    <Link to={"/practice"}>Practice here</Link>
+                    <h1>Review for {user.email}</h1>
+                    <button class="btn-block"><Link to={"/practice"}>Practice here</Link></button>
                   </Jumbotron>
 
                 </Col>
                 <Col size="md-6 sm-12">
-                  <h1>Create More Cards</h1>
-                  <Jumbotron>
+
+                  <Jumbotron className="create">
+                    <h1>Create More Cards</h1>
                     <form>
                       <Input
                         value={this.state.word}
@@ -121,22 +118,27 @@ class Cards extends Component {
               </Row>
 
               <Row>
-                <Col size="md-6 sm-12">
-                  <h3>Card Stack</h3>
-                  {this.state.cards.length ? (
-                    <List>
-                      {this.state.cards.map(card => (
-                        <ListItem key={card._id}>
-                          <Link to={"/cards/" + card._id}>
-                            <strong>
-                              "{card.word}" translates to: "{card.translated}"
+                <Col size="m-12 sm-12">
+                  <div className="card m-5">
+                    <h3 className="text-center mt-5">Card Stack</h3>
+                    <div className="cardstack">
+                      {this.state.cards.length ? (
+                        <List>
+                          {this.state.cards.map(card => (
+                            <ListItem key={card._id}>
+                              <Link to={"/cards/" + card._id}>
+                                <strong>
+                                  "{card.word}" translates to: "{card.translated}"
                         </strong>
-                          </Link>
-                          <DeleteBtn onClick={() => this.deleteCard(card._id)} />
-                        </ListItem>
-                      ))}
-                    </List>
-                  ) : <p>Card stack is empty!</p>}
+                              </Link>
+                              <DeleteBtn onClick={() => this.deleteCard(card._id)} />
+                            </ListItem>
+                          ))}
+                        </List>
+                      ) : <p>Card stack is empty!</p>}
+                    </div>
+                  </div>
+
                 </Col>
               </Row>
             </Container>)

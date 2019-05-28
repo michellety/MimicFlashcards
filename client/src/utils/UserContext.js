@@ -17,14 +17,14 @@ export class UserProvider extends React.Component {
             currentUser
         });
         //save the user object as a string in the session storage
-        localStorage.setItem("user", JSON.stringify(currentUser));
+        sessionStorage.setItem("user", JSON.stringify(currentUser));
     }
 
     onLogout = () => {
         this.setState({
             currentUser: null
         })
-        localStorage.removeItem("user");
+        sessionStorage.removeItem("user");
     }
 
     render() {

@@ -3,5 +3,14 @@
 }
 
 .navbar-light, .nav-link {
-    color: whitesmoke;
+    color: lightgray;
+}
+
+.greeting {
+    color: lightgray;
+    text-align: center;
+}
+.navbar-brand {
+    color: lightgray;
+    text-align: center;
 }

@@ -1,4 +1,7 @@
 .jumbotron {
-    /* background-image:url("../../images/notes.jpg"); */
-    background: lightblue;
+    background-image:url("../../images/stucco.jpg");
+    background-position: center;
+    background-repeat: no-repeat;
+    border-radius: 20px;
+    border: 1px solid navy;     
 }

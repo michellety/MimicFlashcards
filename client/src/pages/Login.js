@@ -1,7 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import { Col, Row, Container } from "../components/Grid";
-import Jumbotron from "../components/Jumbotron";
+import { Container } from "../components/Grid";
+// import Jumbotron from "../components/Jumbotron";
 import API from "../utils/API";
 import { Input, FormBtn } from "../components/Form";
 import UserContext from "../utils/UserContext";
@@ -47,47 +47,45 @@ class Login extends React.Component {
         {({ onLogin }) => (
 
           <Container fluid>
-            <Row>
-              <Col size="md-6 sm-12">
-                <Jumbotron>
-                  <div>
-                    <h1>Login Page</h1>
-                    <Input
-                      type="text"
-                      value={email}
-                      name="email"
-                      placeholder="Email (required)"
-                      onChange={this.handleChange}
-                    />
 
-                    <Input
-                      type="password"
-                      value={password}
-                      name="password"
-                      placeholder="Password (required)"
-                      onChange={this.handleChange}
-                    />
+            <div className="entry mt-5">
+              <div className="formContainer">
+                <h1 className="header text-center mt-5">Welcome back!</h1>
+                <h4 className="label text-center"> Please log in with your account email and password</h4>
 
-                    {this.state.error ? (
-                      <span className="alert">{this.state.error}</span>
-                    ): null}
+                <Input
+                  label="email"
+                  type="text"
+                  value={email}
+                  name="email"
+                  placeholder="Email (required)"
+                  onChange={this.handleChange}
+                />
 
-                    <FormBtn onClick={() => this.handleLogin(onLogin)} disabled={!Boolean(this.state.email && this.state.password)}>Submit</FormBtn>
+                <Input
+                  type="password"
+                  value={password}
+                  name="password"
+                  placeholder="Password (required)"
+                  onChange={this.handleChange}
+                />
 
-                  </div>
-                </Jumbotron>
-              </Col>
-            </Row>
+                {this.state.error ? (
+                  <span className="alert">{this.state.error}</span>
+                ) : null}
 
-            <Row>
-              <Col size="md-2">
-                <Link to="/signup">← New user? Sign up here </Link>
-              </Col>
-            </Row>
+                <FormBtn onClick={() => this.handleLogin(onLogin)} disabled={!Boolean(this.state.email && this.state.password)}>Submit</FormBtn>
+                
+                <div className="text-center alternate mt-2"><Link to="/signup">New user? Sign up here </Link></div>
+
+              </div>
+
+            </div>
+
           </Container>
 
         )}
-        
+
       </UserContext.Consumer>
     );
   }
