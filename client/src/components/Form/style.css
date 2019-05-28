@@ -1,0 +1,48 @@
+.form-control{
+    color: navy;
+}
+
+.submitBtn {
+    color: white;
+    background: navy;
+    border-radius: 20px;
+    
+}
+.submitBtn:hover {
+    color: navy;
+    background: white;
+}
+.submitBtn:active {
+    background-color: navy;
+    transform: translateY(4px);
+}
+
+.entry{
+    width: 100%;
+    max-width: 500px;
+    padding: 35px;
+    margin: auto;
+    height: 100%;
+    background: rgba(13, 19, 51, 0.658);
+    border-radius: 25px;
+    color: navy;
+    
+}
+
+.formContainer {
+    padding: 20px;
+    min-height: 300px;
+    background-image: url("../../images/stucco.jpg");
+    border-radius: 25px;
+}
+.alternate {
+    padding: 20px;
+}
+.label {
+    padding: 15px 5px 30px;
+}
+
+.header {
+    color: navy;
+    margin: 15px;
+  }

@@ -1,6 +1,5 @@
 .list-overflow-container {
-  max-height: 545px;
-  border: 1px #DDDDDD solid;
+  max-height: 500px;
   border-radius: 4px;
   overflow-y: scroll;
   overflow-x: hidden;
@@ -21,7 +20,7 @@
 }
 
 .list-overflow-container li a {
-  color: #2A878C;
+  color: navy;
 }
 
 .list-overflow-container li:first-child {
@@ -30,4 +29,21 @@
 
 .list-overflow-container li:last-child {
   border-bottom: none;
+}
+
+.cardstack {
+  max-width: 450px;
+  margin: auto;
+  height: auto;
+}
+
+.card {
+  background-image: url("../../images/stucco.jpg");
+  border: 1px solid navy;
+
+}
+.list-group-item {
+  padding: 10px;
+  margin: 3px;
+  
 }

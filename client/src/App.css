@@ -1,3 +1,19 @@
 .bg-image { 
-    background-image: url("../src/images/notes.jpg");
+  background-image: url("../src/images/notes.jpeg"); 
+  filter: grayscale(.2);
+}
+
+a {
+  color: #FFF;
+}
+
+a:hover {
+  color: navy;
+}
+
+button {
+  padding: 10px;
+  background-color: navy;
+  border-radius: 20px;
+
 }

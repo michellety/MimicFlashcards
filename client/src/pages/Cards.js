@@ -9,6 +9,7 @@ import { Input, FormBtn } from "../components/Form";
 import { Redirect } from 'react-router-dom';
 import UserContext from "../utils/UserContext"
 
+
 class Cards extends Component {
   static contextType = UserContext;
 
@@ -18,13 +19,12 @@ class Cards extends Component {
     translated: ""
   };
 
-  componentDidMount() {  
+  componentDidMount() {
     const { user } = this.context;
     console.log(user)
-    if(user){
+    if (user) {
       this.loadCards(user.token);
     }
-    //need token to access the api
   }
 
   // translateWord = () => {
@@ -36,11 +36,11 @@ class Cards extends Component {
   // }
 
   loadCards = (token) => {
-      API.getCards(token)
-        .then(res =>
-          this.setState({ cards: res.data, word: "", translated: "" })
-        )
-        .catch(err => console.log(err));
+    API.getCards(token)
+      .then(res =>
+        this.setState({ cards: res.data, word: "", translated: "" })
+      )
+      .catch(err => console.log(err));
   };
 
   deleteCard = (id) => {
@@ -60,7 +60,7 @@ class Cards extends Component {
   handleFormSubmit = event => {
     event.preventDefault();
     const { user } = this.context;
-    
+
     if (this.state.word && this.state.translated) {
       API.saveCard({
         word: this.state.word,
@@ -72,75 +72,76 @@ class Cards extends Component {
   };
 
   render() {
-    //const { user } = this.context;
     return (
       //if logged in, display cards 
       <UserContext.Consumer>
-        {({user}) => {
-          if(!user) {return <Redirect to="/login" />}
+        {({ user }) => {
+          if (!user) { return <Redirect to="/login" /> }
           return (
-          <Container fluid>
-            <Row>
-              <Col size="md-2">
-                <Link to="/login">← Log Out</Link>
-              </Col>
-            </Row>
-            <Row>
-              <Col size="md-6">
-                <h1>Review for {user.email}?</h1>
-                <Jumbotron>
-                  <Link to={"/practice"}>Practice here</Link>
-                </Jumbotron>
-  
-              </Col>
-              <Col size="md-6 sm-12">
-                <h1>Create More Cards</h1>
-                <Jumbotron>
-                  <form>
-                    <Input
-                      value={this.state.word}
-                      onChange={this.handleInputChange}
-                      name="word"
-                      placeholder="Word (required)"
-                    />
-                    <Input
-                      value={this.state.translated}
-                      onChange={this.handleInputChange}
-                      name="translated"
-                      placeholder="Translated (required)"
-                    />
-  
-                    <FormBtn
-                      disabled={!(this.state.word && this.state.translated)}
-                      onClick={this.handleFormSubmit}>
-                      Submit
+            <Container fluid>
+              <Row>
+                <Col size="md-6 sm-12">
+
+                  <Jumbotron>
+                    <h1>Review for {user.email}</h1>
+                    <button class="btn-block"><Link to={"/practice"}>Practice here</Link></button>
+                  </Jumbotron>
+
+                </Col>
+                <Col size="md-6 sm-12">
+
+                  <Jumbotron className="create">
+                    <h1>Create More Cards</h1>
+                    <form>
+                      <Input
+                        value={this.state.word}
+                        onChange={this.handleInputChange}
+                        name="word"
+                        placeholder="Word (required)"
+                      />
+                      <Input
+                        value={this.state.translated}
+                        onChange={this.handleInputChange}
+                        name="translated"
+                        placeholder="Translated (required)"
+                      />
+
+                      <FormBtn
+                        disabled={!(this.state.word && this.state.translated)}
+                        onClick={this.handleFormSubmit}>
+                        Submit
                   </FormBtn>
-  
-                  </form>
-                </Jumbotron>
-              </Col>
-            </Row>
-  
-            <Row>
-              <Col size="md-6 sm-12">
-                <h3>Card Stack</h3>
-                {this.state.cards.length ? (
-                  <List>
-                    {this.state.cards.map(card => (
-                      <ListItem key={card._id}>
-                        <Link to={"/cards/" + card._id}>
-                          <strong>
-                            "{card.word}" translates to: "{card.translated}"
+
+                    </form>
+                  </Jumbotron>
+                </Col>
+              </Row>
+
+              <Row>
+                <Col size="m-12 sm-12">
+                  <div className="card m-5">
+                    <h3 className="text-center mt-5">Card Stack</h3>
+                    <div className="cardstack">
+                      {this.state.cards.length ? (
+                        <List>
+                          {this.state.cards.map(card => (
+                            <ListItem key={card._id}>
+                              <Link to={"/cards/" + card._id}>
+                                <strong>
+                                  "{card.word}" translates to: "{card.translated}"
                         </strong>
-                        </Link>
-                        <DeleteBtn onClick={() => this.deleteCard(card._id)} />
-                      </ListItem>
-                    ))}
-                  </List>
-                ) : <p>Please log in to see created cards.</p>}
-              </Col>
-            </Row>
-          </Container>)
+                              </Link>
+                              <DeleteBtn onClick={() => this.deleteCard(card._id)} />
+                            </ListItem>
+                          ))}
+                        </List>
+                      ) : <p>Card stack is empty!</p>}
+                    </div>
+                  </div>
+
+                </Col>
+              </Row>
+            </Container>)
         }}
       </UserContext.Consumer>
     );

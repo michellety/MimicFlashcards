@@ -53,20 +53,26 @@ class Practice extends Component {
     return (
       <Container fluid>
         <Row>
-          <Col size="md-12">
-            <h1>Practice Page</h1>
-            <div className="row">
-              <FlashCard word={this.state.currentCard.word} translated={this.state.currentCard.translated} />
-            </div>
-            <NextBtn onClick={this.nextCard} />
+          <Col size="md-2">
+            <button><Link to="/cards">← Create New Cards</Link></button>
           </Col>
         </Row>
 
         <Row>
-          <Col size="md-2">
-            <Link to="/cards">← Create New Cards</Link>
+          <Col size="md-12">
+            <div className="row">
+              <FlashCard word={this.state.currentCard.word} translated={this.state.currentCard.translated} />
+            </div>   
           </Col>
         </Row>
+
+        <Row>
+          <Col size="md-12">
+            <NextBtn onClick={this.nextCard} />
+          </Col>
+        </Row>
+
+        
       </Container>
     );
   }

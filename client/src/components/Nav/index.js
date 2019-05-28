@@ -4,18 +4,13 @@ import { Link } from 'react-router-dom';
 import UserContext from "../../utils/UserContext";
 
 function Nav() {
-  ///make a validate function that makes a call to the api, checks token 
-  //gets token from local storage when component did mount
-  //api route
-  //
-  console.log(localStorage.getItem("id_token"))
   
   return (
 
 
     <UserContext.Consumer>
       {({ user }) => (
-        <nav className="navbar navbar-dark navbar-expand-md bg-faded justify-content-center">
+        <nav className="navbar navbar-expand-md justify-content-center">
           <a href="/cards" className="navbar-brand d-flex w-50 mr-auto">Mimic</a>
           <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsingNavbar3">
             <span className="navbar-toggler-icon"></span>
@@ -23,12 +18,13 @@ function Nav() {
  
           {user ? (
             <div className="navbar-collapse collapse w-100" id="collapsingNavbar3">
+              {/* <div className="greeting">Welcome, {user.email}</div> */}
               <ul className="nav navbar-nav ml-auto w-100 justify-content-end">
                 <li className="nav-item">
                   <Link className="nav-link" to="/login">Log-out</Link>
                 </li>
               </ul>
-              <div>Hello, {user.email}</div>
+              
             </div>
 
           ) : (

@@ -1,7 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import { Col, Row, Container } from "../components/Grid";
-import Jumbotron from "../components/Jumbotron";
+import { Container } from "../components/Grid";
+
 import API from "../utils/API";
 import { Input, FormBtn } from "../components/Form";
 
@@ -14,7 +14,7 @@ class Signup extends React.Component {
   handleChange = (event) => {
     const { name, value } = event.target;
     this.setState({
-      [name] : value
+      [name]: value
     });
   }
 
@@ -25,41 +25,40 @@ class Signup extends React.Component {
       .then(res => history.push("/login"))
       .catch(err => console.log("error: ", err));
   }
- 
+
   render() {
     const { email, password } = this.state;
     return (
       <Container fluid>
-        <Row>
-          <Col size="md-6 sm-12">
-            <Jumbotron>
-              <h1>
-                Sign- Up
-              </h1>
-              <div>
-                <Input
-                  type="text"
-                  value={email}
-                  name="email"
-                  placeholder="Email (required)"
-                  onChange={this.handleChange}
-                />
 
-                <Input
-                  type="password"
-                  value={password}
-                  name="password"
-                  placeholder="Password (required)"
-                  onChange={this.handleChange}
-                />
-                <FormBtn onClick={this.onSignup} disabled={!this.state.email || !this.state.password}>SignUp</FormBtn>
+        <div className="entry mt-5">
 
-              </div>
-            </Jumbotron>
-            
-            <Link to="/login">← Returning user? Login here </Link>
-          </Col>
-        </Row>
+          <div className="formContainer">
+            <h1 className="header text-center mt-5">Sign- Up</h1>
+            <h4 className="label text-center"> Please enter your email and create an account password</h4>
+            <Input
+              type="text"
+              value={email}
+              name="email"
+              placeholder="Email (required)"
+              onChange={this.handleChange}
+            />
+
+            <Input
+              type="password"
+              value={password}
+              name="password"
+              placeholder="Password (required)"
+              onChange={this.handleChange}
+            />
+            <FormBtn onClick={this.onSignup} disabled={!this.state.email || !this.state.password}>SignUp</FormBtn>
+
+            <div className="text-center alternate mt-2">
+              <Link to="/login">Returning user? Login here </Link>
+            </div>
+          </div>
+        </div>
+
       </Container>
     );
   }
