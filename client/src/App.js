@@ -8,6 +8,7 @@ import Login from "./pages/Login";
 import Signup from "./pages/Signup";
 import Home from "./pages/Home";
 import Nav from "./components/Nav";
+import Footer from "./components/Footer";
 import "./App.css";
 import { UserProvider } from "./utils/UserContext";
 
@@ -26,6 +27,7 @@ function App() {
             <Route exact path="/practice" component={Practice} />
             <Route component={NoMatch} />
           </Switch>
+          <Footer />
         </div>
       </Router>
     </UserProvider>
