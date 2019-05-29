@@ -1,7 +1,7 @@
 import React from "react";
 import "./style.css";
 
-// This file exports both the List and ListItem components
+// This file exports the grid area into which the new cards created are added
 
 export function GridArea({ children }) {
   return (

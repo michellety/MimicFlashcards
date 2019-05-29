@@ -19,8 +19,6 @@ class Home extends Component {
                     <p>Build custom cards to learn a new language</p>
                     </div>
                 </div>
-
-
             </div>
         );
     }

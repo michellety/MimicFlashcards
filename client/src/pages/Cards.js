@@ -4,11 +4,11 @@ import Jumbotron from "../components/Jumbotron";
 import API from "../utils/API";
 import { Link } from "react-router-dom";
 import { Col, Row, Container } from "../components/Grid";
-// import { List, ListItem } from "../components/List";
 import { Input, FormBtn } from "../components/Form";
 import { Redirect } from 'react-router-dom';
 import UserContext from "../utils/UserContext";
 import { GridArea, GridItem } from "../components/Cardstack";
+import Radio from "../components/Radio";
 
 
 class Cards extends Component {
@@ -94,17 +94,29 @@ class Cards extends Component {
                   <Jumbotron className="create">
                     <h1>Create More Cards</h1>
                     <form>
+                      <h4>Select a language</h4>
+
+                      <Radio />
+
                       <Input
                         value={this.state.word}
                         onChange={this.handleInputChange}
                         name="word"
-                        placeholder="Word (required)"
+                        placeholder="Word or Phrase (required)"
                       />
+
+                      <FormBtn
+                        disabled={!(this.state.word)}
+                        onClick={this.handleTranslation}>
+                        Translate
+                      </FormBtn>
+                      <br></br>
+
                       <Input
                         value={this.state.translated}
                         onChange={this.handleInputChange}
                         name="translated"
-                        placeholder="Translated (required)"
+                        placeholder="Translation (required)"
                       />
 
                       <FormBtn
@@ -121,7 +133,7 @@ class Cards extends Component {
               <Row>
                 <Col size="m-12 sm-12">
                   {/* <div className="card m-5"> */}
-                    <Jumbotron>
+                  <Jumbotron>
                     <h3 className="text-center">Card Stack</h3>
                     <div className="cardstack">
                       {this.state.cards.length ? (
@@ -129,11 +141,11 @@ class Cards extends Component {
                           {this.state.cards.map(card => (
                             <GridItem key={card._id}>
                               <Link to={"/cards/" + card._id}>
-                                <strong>"{card.word}"</strong> 
+                                <strong>"{card.word}"</strong>
+                                <br></br>
+                                translates to:
                                   <br></br>
-                                  translates to: 
-                                  <br></br>
-                                  <strong>"{card.translated}"</strong>
+                                <strong>"{card.translated}"</strong>
                               </Link>
                               <DeleteBtn onClick={() => this.deleteCard(card._id)} />
                             </GridItem>

@@ -24,6 +24,7 @@ module.exports = {
       .catch(err => res.status(422).json(err));
   },
 
+  ///get the cards created by the specific user
   update: function (req, res) {
     db.Card
       .findOneAndUpdate({ _id: req.params.id }, req.body)
