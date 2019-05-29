@@ -53,9 +53,9 @@ class Signup extends React.Component {
             />
             <FormBtn onClick={this.onSignup} disabled={!this.state.email || !this.state.password}>SignUp</FormBtn>
 
-            <div className="text-center alternate mt-2">
+            <button className="text-center btn-block">
               <Link to="/login">Returning user? Login here </Link>
-            </div>
+            </button>
           </div>
         </div>
 

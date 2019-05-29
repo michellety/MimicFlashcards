@@ -15,5 +15,15 @@ button {
   padding: 10px;
   background-color: navy;
   border-radius: 20px;
+  color: white;
 
+}
+
+button:hover {
+  color: navy;
+  background: white;
+}
+button:active {
+  background-color: navy;
+  transform: translateY(4px);
 }

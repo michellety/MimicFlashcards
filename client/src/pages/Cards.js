@@ -4,10 +4,11 @@ import Jumbotron from "../components/Jumbotron";
 import API from "../utils/API";
 import { Link } from "react-router-dom";
 import { Col, Row, Container } from "../components/Grid";
-import { List, ListItem } from "../components/List";
+// import { List, ListItem } from "../components/List";
 import { Input, FormBtn } from "../components/Form";
 import { Redirect } from 'react-router-dom';
-import UserContext from "../utils/UserContext"
+import UserContext from "../utils/UserContext";
+import { GridArea, GridItem } from "../components/Cardstack";
 
 
 class Cards extends Component {
@@ -110,7 +111,7 @@ class Cards extends Component {
                         disabled={!(this.state.word && this.state.translated)}
                         onClick={this.handleFormSubmit}>
                         Submit
-                  </FormBtn>
+                      </FormBtn>
 
                     </form>
                   </Jumbotron>
@@ -119,25 +120,28 @@ class Cards extends Component {
 
               <Row>
                 <Col size="m-12 sm-12">
-                  <div className="card m-5">
-                    <h3 className="text-center mt-5">Card Stack</h3>
+                  {/* <div className="card m-5"> */}
+                    <Jumbotron>
+                    <h3 className="text-center">Card Stack</h3>
                     <div className="cardstack">
                       {this.state.cards.length ? (
-                        <List>
+                        <GridArea>
                           {this.state.cards.map(card => (
-                            <ListItem key={card._id}>
+                            <GridItem key={card._id}>
                               <Link to={"/cards/" + card._id}>
-                                <strong>
-                                  "{card.word}" translates to: "{card.translated}"
-                        </strong>
+                                <strong>"{card.word}"</strong> 
+                                  <br></br>
+                                  translates to: 
+                                  <br></br>
+                                  <strong>"{card.translated}"</strong>
                               </Link>
                               <DeleteBtn onClick={() => this.deleteCard(card._id)} />
-                            </ListItem>
+                            </GridItem>
                           ))}
-                        </List>
+                        </GridArea>
                       ) : <p>Card stack is empty!</p>}
-                    </div>
-                  </div>
+                    </div></Jumbotron>
+                  {/* </div> */}
 
                 </Col>
               </Row>

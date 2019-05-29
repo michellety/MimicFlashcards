@@ -76,7 +76,7 @@ class Login extends React.Component {
 
                 <FormBtn onClick={() => this.handleLogin(onLogin)} disabled={!Boolean(this.state.email && this.state.password)}>Submit</FormBtn>
                 
-                <div className="text-center alternate mt-2"><Link to="/signup">New user? Sign up here </Link></div>
+                <button className="text-center btn-block"><Link to="/signup">New user? Sign up here </Link></button>
 
               </div>
 
