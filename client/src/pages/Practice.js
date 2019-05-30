@@ -29,7 +29,7 @@ class Practice extends Component {
   }
 
   getCurrentCard = (token) => {
-    API.getCards(token)
+    API.getCardsForUser(token)
       .then(res => {
         console.log(res.data);
         this.setState({ cards: res.data, word: "", translated: "", currentCard: this.getRandomCard(res.data) })
