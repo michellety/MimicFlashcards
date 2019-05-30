@@ -6,11 +6,11 @@ const Radio = () => {
     <div className="radio-block">
       <div className="form-check form-check-inline">
         <input className="form-check-input" type="radio" name="inlineRadioOptions" id="danish" value="da" />
-        <label className="form-check-label" for="inlineRadio1">Danish</label>
+        <label className="form-check-label">Danish</label>
       </div>
       <div className="form-check form-check-inline">
         <input className="form-check-input" type="radio" name="inlineRadioOptions" id="spanish" value="es" />
-        <label className="form-check-label" for="inlineRadio2">Spanish</label>
+        <label className="form-check-label">Spanish</label>
       </div>
       
     </div>

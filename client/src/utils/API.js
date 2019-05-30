@@ -1,9 +1,9 @@
 import axios from "axios";
 
 export default {
-  // Gets all cards
+  // Gets all cards in the database
   //include token for validation
-  getCards: function (token) {
+  getCardsForUser: function (token) {
     return axios.get("/api/cards",
       {
         headers: {
@@ -33,8 +33,8 @@ export default {
   },
 
   // Saves a card to the database
-  saveCard: function (cardData, token) {
-    return axios.post("/api/cards", cardData,
+  saveCard: function (cardData, token, id) {
+    return axios.post("/api/cards/" + id, cardData,
       {
         headers: {
           "Authorization": `Bearer ${token}`
@@ -50,10 +50,5 @@ export default {
   login: function (data) {
     return axios.post("/api/users/login", data);
   },
-
-  // translator: function() {
-  //   return axios.get("/api/translate");
-  // }
-
 
 };

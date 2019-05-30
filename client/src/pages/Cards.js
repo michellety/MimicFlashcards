@@ -28,16 +28,8 @@ class Cards extends Component {
     }
   }
 
-  // translateWord = () => {
-  //   API.translator()
-  //     .then(res => 
-  //       this.setState({translated: this.state.translated})
-  //       )
-  //       .catch(err = console.log(err));
-  // }
-
   loadCards = (token) => {
-    API.getCards(token)
+    API.getCardsForUser(token)
       .then(res =>
         this.setState({ cards: res.data, word: "", translated: "" })
       )
@@ -66,7 +58,7 @@ class Cards extends Component {
       API.saveCard({
         word: this.state.word,
         translated: this.state.translated
-      }, user.token)
+      }, user.token, user.id)
         .then(res => this.loadCards(user.token))
         .catch(err => console.log(err));
     }
@@ -85,7 +77,7 @@ class Cards extends Component {
 
                   <Jumbotron>
                     <h1>Review for {user.email}</h1>
-                    <button class="btn-block"><Link to={"/practice"}>Practice here</Link></button>
+                    <button className="btn-block"><Link to={"/practice"}>Practice here</Link></button>
                   </Jumbotron>
 
                 </Col>
@@ -102,7 +94,7 @@ class Cards extends Component {
                         value={this.state.word}
                         onChange={this.handleInputChange}
                         name="word"
-                        placeholder="Word or Phrase (required)"
+                        placeholder="English Word or Phrase (required)"
                       />
 
                       <FormBtn
