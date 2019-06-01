@@ -7,7 +7,7 @@ const isAuthenticated = require("../../controllers/authentication");
 
 router
     .use("/users", userRoutes)
-    // .use(isAuthenticated)
+    .use(isAuthenticated)
     .use("/practice", practiceRoutes)
     .use("/cards", cardRoutes)
     .use("/translate", translateRoute);

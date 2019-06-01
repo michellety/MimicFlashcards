@@ -51,4 +51,15 @@ export default {
     return axios.post("/api/users/login", data);
   },
 
+
+  ///to use google translate
+  startTranslation: function (data, token ) {
+    return axios.post("/api/translate", data,
+      {
+        headers: {
+          "Authorization": `Bearer ${token}`
+        }
+      });
+  }
+
 };

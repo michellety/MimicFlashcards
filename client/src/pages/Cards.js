@@ -12,7 +12,7 @@ import Radio from "../components/Radio";
 // import {RadioBlock, Radio} from "../components/Radio";
 // import translate from '../translations';
 // import quickstart from "../translations";
-import axios from "axios";
+// import axios from "axios";
 
 
 class Cards extends Component {
@@ -83,20 +83,25 @@ class Cards extends Component {
   //use resulting translation to equal this.state.translated in the form input
 
 
+  // handleTranslation = (event) => {
+  //   event.preventDefault();
+
+  //   const { target, text } = this.state;
+    
+  //   axios.post("/api/translate", {text, target}, {
+  //     headers: {
+  //       "Authorization": `Bearer ${localStorage.getItem('id_token')}`
+  //     }}).then(res => this.setState({translated: res.data}))
+  
+  // }
+
   handleTranslation = (event) => {
     event.preventDefault();
-
+    const { user } = this.context;
     const { target, text } = this.state;
-    // const { text } = this.state
-    // const text = this.state.text;
-    // this.state.target;
-    
-    // quickstart(text, target);
-    axios.post("/api/translate", {text, target}, {
-      headers: {
-        "Authorization": `Bearer ${localStorage.getItem('id_token')}`
-      }}).then(res => this.setState({translated: res.data}))
-  
+    API.startTranslation({ target, text }, user.token)
+      .then(res => this.setState({ translated: res.data }))
+      .catch(err => console.log(err))
   }
 
   

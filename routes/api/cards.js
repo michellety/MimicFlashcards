@@ -4,8 +4,6 @@ const cardsController = require("../../controllers/cardsController");
 // Matches with "/api/cards"
 router.route("/")
   .get(cardsController.findAll)
-  // .post(cardsController.create);
-  // .post(cardsController.update);
 
 // Matches with "/api/cards/:id"
 router.route("/:id")
