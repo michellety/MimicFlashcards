@@ -1,7 +1,9 @@
 const jwt = require("jsonwebtoken");
 // jwt middleware
 module.exports = function (req, res, next) {
+    console.log(process.env.SERVER_SECRET)
     const token = req.header("Authorization");
+    // console.log("token", req.header("Authorization"))
     if (!token) {
         return res.status(401).json({
             error: "Not Authenticated"

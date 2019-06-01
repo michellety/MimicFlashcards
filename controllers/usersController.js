@@ -48,5 +48,10 @@ module.exports = {
         .then(dbModel => res.json(dbModel))
         .catch(err => res.status(422).json(err));
     })
+  },
+
+  logout: function () {
+    localStorage.removeItem("id_token");
+    window.location.reload("/");
   }
 };

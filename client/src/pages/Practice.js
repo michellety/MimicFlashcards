@@ -12,7 +12,7 @@ class Practice extends Component {
 
   state = {
     cards: [],
-    word: "",
+    text: "",
     translated: "",
     currentCard: {}
   };
@@ -32,7 +32,7 @@ class Practice extends Component {
     API.getCardsForUser(token)
       .then(res => {
         console.log(res.data);
-        this.setState({ cards: res.data, word: "", translated: "", currentCard: this.getRandomCard(res.data) })
+        this.setState({ cards: res.data, text: "", translated: "", currentCard: this.getRandomCard(res.data) })
       }).catch(err => console.log(err));
   };
 
@@ -61,7 +61,7 @@ class Practice extends Component {
         <Row>
           <Col size="md-12">
             <div className="row">
-              <FlashCard word={this.state.currentCard.word} translated={this.state.currentCard.translated} />
+              <FlashCard text={this.state.currentCard.text} translated={this.state.currentCard.translated} />
             </div>   
           </Col>
         </Row>
