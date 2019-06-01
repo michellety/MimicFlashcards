@@ -10,17 +10,17 @@ mongoose.connect(
 
 const cardSeed = [
   {
-    word: "Hi",
+    text: "Hi",
     translated: "Hej",
     date: new Date(Date.now())
   },
   {
-    word: "Thanks",
+    text: "Thanks",
     translated: "Tak",
     date: new Date(Date.now())
   },
   {
-    word: "Excuse me",
+    text: "Excuse me",
     translated: "Undskyld mig",
     date: new Date(Date.now())
   }

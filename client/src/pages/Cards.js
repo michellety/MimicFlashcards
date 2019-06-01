@@ -9,6 +9,10 @@ import { Redirect } from 'react-router-dom';
 import UserContext from "../utils/UserContext";
 import { GridArea, GridItem } from "../components/Cardstack";
 import Radio from "../components/Radio";
+// import {RadioBlock, Radio} from "../components/Radio";
+// import translate from '../translations';
+// import quickstart from "../translations";
+import axios from "axios";
 
 
 class Cards extends Component {
@@ -16,8 +20,9 @@ class Cards extends Component {
 
   state = {
     cards: [],
-    word: "",
-    translated: ""
+    translated: "", 
+    target: "",
+    text:""
   };
 
   componentDidMount() {
@@ -31,7 +36,7 @@ class Cards extends Component {
   loadCards = (token) => {
     API.getCardsForUser(token)
       .then(res =>
-        this.setState({ cards: res.data, word: "", translated: "" })
+        this.setState({ cards: res.data, text: "", translated: "" })
       )
       .catch(err => console.log(err));
   };
@@ -54,15 +59,48 @@ class Cards extends Component {
     event.preventDefault();
     const { user } = this.context;
 
-    if (this.state.word && this.state.translated) {
+    if (this.state.text && this.state.translated) {
       API.saveCard({
-        word: this.state.word,
+        text: this.state.text,
         translated: this.state.translated
       }, user.token, user.id)
         .then(res => this.loadCards(user.token))
         .catch(err => console.log(err));
     }
   };
+
+  handleTargetChange = (event) => {
+    const { value } = event.target;
+    this.setState({
+      target: value 
+    });
+  }
+
+  ///////////////translate////////////////////
+  //////when clicked, use value from radio button and set equal to target
+  ///value of this.state.text set equal to text 
+  //use text and target values in the translations function 
+  //use resulting translation to equal this.state.translated in the form input
+
+
+  handleTranslation = (event) => {
+    event.preventDefault();
+
+    const { target, text } = this.state;
+    // const { text } = this.state
+    // const text = this.state.text;
+    // this.state.target;
+    
+    // quickstart(text, target);
+    axios.post("/api/translate", {text, target}, {
+      headers: {
+        "Authorization": `Bearer ${localStorage.getItem('id_token')}`
+      }}).then(res => this.setState({translated: res.data}))
+  
+  }
+
+  
+///////////////////////////////////////////////
 
   render() {
     return (
@@ -74,34 +112,33 @@ class Cards extends Component {
             <Container fluid>
               <Row>
                 <Col size="md-6 sm-12">
-
                   <Jumbotron>
                     <h1>Review for {user.email}</h1>
                     <button className="btn-block"><Link to={"/practice"}>Practice here</Link></button>
                   </Jumbotron>
-
                 </Col>
-                <Col size="md-6 sm-12">
 
+                <Col size="md-6 sm-12">
                   <Jumbotron className="create">
                     <h1>Create More Cards</h1>
                     <form>
                       <h4>Select a language</h4>
 
-                      <Radio />
+                      <Radio value={this.state.target} onChange={this.handleTargetChange}/>    
 
                       <Input
-                        value={this.state.word}
+                        value={this.state.text}
                         onChange={this.handleInputChange}
-                        name="word"
+                        name="text"
                         placeholder="English Word or Phrase (required)"
                       />
 
                       <FormBtn
-                        disabled={!(this.state.word)}
+                        disabled={!(this.state.text)} 
                         onClick={this.handleTranslation}>
                         Translate
                       </FormBtn>
+
                       <br></br>
 
                       <Input
@@ -112,7 +149,7 @@ class Cards extends Component {
                       />
 
                       <FormBtn
-                        disabled={!(this.state.word && this.state.translated)}
+                        disabled={!(this.state.text && this.state.translated)} 
                         onClick={this.handleFormSubmit}>
                         Submit
                       </FormBtn>
@@ -133,7 +170,7 @@ class Cards extends Component {
                           {this.state.cards.map(card => (
                             <GridItem key={card._id}>
                               <Link to={"/cards/" + card._id}>
-                                <strong>"{card.word}"</strong>
+                                <strong>"{card.text}"</strong>
                                 <br></br>
                                 translates to:
                                   <br></br>

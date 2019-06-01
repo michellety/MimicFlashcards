@@ -6,7 +6,7 @@ const FlashCard = (props) => {
     <div className="card">
       <div className="cardBody">
         <div className="front">
-          <div className="word">{props.word}</div>
+          <div className="text">{props.text}</div>
         </div>
         <div className="back">
           <div className="translated">{props.translated}</div>

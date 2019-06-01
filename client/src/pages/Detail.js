@@ -24,7 +24,7 @@ class Detail extends Component {
             <Jumbotron>
               <h1>Edit card</h1>
               <h3>
-                {this.state.card.word}
+                {this.state.card.text}
               </h3>
             </Jumbotron>
           </Col>
