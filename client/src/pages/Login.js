@@ -10,6 +10,7 @@ class Login extends React.Component {
   state = {
     email: "",
     password: "",
+    userName: "",
     currentUser: null,
     error: null
   };
@@ -23,8 +24,8 @@ class Login extends React.Component {
 
   handleLogin = (onLogin) => {
     const { history } = this.props;
-    const { email, password } = this.state;
-    API.login({ email, password })
+    const { email, password, userName } = this.state;
+    API.login({ email, password, userName })
       .then(res => {
         onLogin(res.data);
         console.log(res.data)
@@ -39,7 +40,7 @@ class Login extends React.Component {
   };
 
   render() {
-    const { email, password } = this.state;
+    const { email, password, userName } = this.state;
     return (
       <UserContext.Consumer>
 
@@ -50,7 +51,16 @@ class Login extends React.Component {
             <div className="entry mt-5">
               <div className="formContainer">
                 <h1 className="header text-center mt-5">Welcome back!</h1>
-                <h4 className="label text-center"> Please log in with your account email and password</h4>
+                <h4 className="label text-center"> Please log in with your account details</h4>
+
+                <Input
+                  label="name"
+                  type="text"
+                  value={userName}
+                  name="userName"
+                  placeholder="Name (required)"
+                  onChange={this.handleChange}
+                />
 
                 <Input
                   label="email"
@@ -73,7 +83,7 @@ class Login extends React.Component {
                   <span className="alert">{this.state.error}</span>
                 ) : null}
 
-                <FormBtn onClick={() => this.handleLogin(onLogin)} disabled={!Boolean(this.state.email && this.state.password)}>Submit</FormBtn>
+                <FormBtn onClick={() => this.handleLogin(onLogin)} disabled={!Boolean(this.state.email && this.state.password && this.state.userName)}>Submit</FormBtn>
                 
                 <button className="text-center btn-block"><Link to="/signup">New user? Sign up here </Link></button>
 

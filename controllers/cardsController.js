@@ -3,6 +3,8 @@ const db = require("../models");
 // Defining methods for the cardsController
 module.exports = {
   findAll: function (req, res) {
+
+    ///change this to pull cards only associated with user Id 
     db.Card
       .find(req.query)
       .sort({ date: -1 })
@@ -10,6 +12,7 @@ module.exports = {
       .catch(err => res.status(422).json(err));
   },
 
+  //finds card bases on card ID
   findById: function (req, res) {
     db.Card
       .findById(req.params.id)

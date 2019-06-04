@@ -1,6 +1,7 @@
 .bg-image { 
   background-image: url("../src/images/notes.jpeg"); 
   filter: grayscale(.2);
+
 }
 
 a {

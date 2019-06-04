@@ -6,6 +6,7 @@ import { Input, FormBtn } from "../components/Form";
 
 class Signup extends React.Component {
   state = {
+    userName: "",
     email: "",
     password: ""
   };
@@ -19,14 +20,14 @@ class Signup extends React.Component {
 
   onSignup = () => {
     const { history } = this.props;
-    const { email, password } = this.state;
-    API.signup({ email, password })
+    const { userName, email, password } = this.state;
+    API.signup({ userName, email, password })
       .then(res => history.push("/login"))
       .catch(err => console.log("error: ", err));
   }
 
   render() {
-    const { email, password } = this.state;
+    const { userName, email, password } = this.state;
     return (
       <Container fluid>
 
@@ -34,7 +35,16 @@ class Signup extends React.Component {
 
           <div className="formContainer">
             <h1 className="header text-center mt-5">Sign- Up</h1>
-            <h4 className="label text-center"> Please enter your email and create an account password</h4>
+            <h4 className="label text-center"> Please enter your name, email and create an account password</h4>
+
+            <Input
+              type="text"
+              value={userName}
+              name="userName"
+              placeholder="Name (required)"
+              onChange={this.handleChange}
+            />
+
             <Input
               type="text"
               value={email}
@@ -50,7 +60,7 @@ class Signup extends React.Component {
               placeholder="Password (required)"
               onChange={this.handleChange}
             />
-            <FormBtn onClick={this.onSignup} disabled={!this.state.email || !this.state.password}>SignUp</FormBtn>
+            <FormBtn onClick={this.onSignup} disabled={!this.state.email || !this.state.password || !this.state.userName}>SignUp</FormBtn>
 
             <button className="text-center btn-block">
               <Link to="/login">Returning user? Login here </Link>

@@ -21,11 +21,15 @@ export class UserProvider extends React.Component {
     }
 
     onLogout = () => {
-        this.setState({
-            currentUser: null
-        })
-        sessionStorage.removeItem("user");
+        sessionStorage.clear();
+       
     }
+    // onLogout = (currentUser) => {
+    //     this.setState({
+    //         currentUser: null
+    //     })
+    //     sessionStorage.removeItem("user", JSON.stringify(currentUser));
+    // }
 
     render() {
         return(

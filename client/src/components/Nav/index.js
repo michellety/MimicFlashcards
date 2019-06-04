@@ -21,7 +21,7 @@ function Nav() {
               {/* <div className="greeting">Welcome, {user.email}</div> */}
               <ul className="nav navbar-nav ml-auto w-100 justify-content-end">
                 <li className="nav-item">
-                  <a className="nav-link" href="/" onClick={() => this.logout()}>Log-out </a>
+                  <a className="nav-link" href="/" onClick={() => this.onLogout()}>Log-out </a>
                 </li>
               </ul>
               

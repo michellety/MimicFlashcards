@@ -4,7 +4,8 @@ import { Col, Row, Container } from "../components/Grid";
 import API from "../utils/API";
 import FlashCard from "../components/FlashCard";
 import NextBtn from "../components/NextBtn";
-import UserContext from "../utils/UserContext"
+import UserContext from "../utils/UserContext";
+// import Footer from "../components/Footer";
 
 
 class Practice extends Component {
@@ -72,7 +73,7 @@ class Practice extends Component {
           </Col>
         </Row>
 
-        
+       {/* <Footer/>  */}
       </Container>
     );
   }

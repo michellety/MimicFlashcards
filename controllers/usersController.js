@@ -5,7 +5,7 @@ const jwt = require("jsonwebtoken");
 // Defining methods for the usersController
 module.exports = {
   login: function (req, res) {
-    const { email, password } = req.body;
+    const { email, password, userName } = req.body;
 
     db.User
       .findOne({ email })
@@ -29,7 +29,7 @@ module.exports = {
           } else {
             const { email, _id: id } = dbModel;
             const token = jwt.sign({ email, id }, process.env.SERVER_SECRET);
-            return res.json({ id: dbModel._id, email: dbModel.email, token })
+            return res.json({ id: dbModel._id, email: dbModel.email, userName, token })
           }
         })
       })
@@ -37,9 +37,10 @@ module.exports = {
   },
 
   signup: function (req, res) {
-    const { email, password } = req.body;
+    const { email, password, userName } = req.body;
     bcrypt.hash(password, 10, function (err, hash) {
       const user = {
+        userName, 
         email,
         password: hash
       }
@@ -50,8 +51,8 @@ module.exports = {
     })
   },
 
-  logout: function () {
-    localStorage.removeItem("id_token");
-    window.location.reload("/");
-  }
+  // logout: function () {
+  //   localStorage.removeItem("id_token");
+  //   window.location.reload("/");
+  // }
 };
