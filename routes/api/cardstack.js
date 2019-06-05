@@ -5,6 +5,6 @@
 // // Matches with "/cardstack/:id"
 // router
 //   .route("/:id")
-//   .get(cardsController.findAll);
+//   .get(cardsController.findUserCards);
 
 // module.exports = router;

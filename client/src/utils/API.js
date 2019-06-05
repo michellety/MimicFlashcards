@@ -1,17 +1,21 @@
 import axios from "axios";
 
 export default {
-  // Gets all cards in the database
+  // Gets all cards for the user logged in 
   //include token for validation
-  getCardsForUser: function (token) {
+  getCardsForUser: function (token, userId) {
     return axios.get("/api/cards",
       {
+        params: {
+          userId
+        },
         headers: {
           "Authorization": `Bearer ${token}`
         }
       });
   },
-  // Gets the card with the given id
+
+  // Gets the card with the given card id
   //token required to use the api route
   getCard: function (id, token) {
     return axios.get("/api/cards/" + id,
