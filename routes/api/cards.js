@@ -3,7 +3,8 @@ const cardsController = require("../../controllers/cardsController");
 
 // Matches with "/api/cards"
 router.route("/")
-  .get(cardsController.findAll)
+//get all cardstack for the user logged in
+  .get(cardsController.findAll);
 
 // Matches with "/api/cards/:id"
 router.route("/:id")

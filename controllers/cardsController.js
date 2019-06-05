@@ -4,7 +4,18 @@ const db = require("../models");
 module.exports = {
   findAll: function (req, res) {
 
-    ///change this to pull cards only associated with user Id 
+  //   db.User
+  //     .findById({ _id: req.params.id })
+  //     .populate("cardstack")
+  //     .then(function (dbUser) { res.json(dbUser) }
+  //       .catch(function (err) {
+  //         // If an error occurs, send it back to the client
+  //         res.json(err);
+  //       }))
+  // },
+
+
+  ///change this to pull cards only associated with user Id 
     db.Card
       .find(req.query)
       .sort({ date: -1 })
@@ -16,7 +27,7 @@ module.exports = {
   findById: function (req, res) {
     db.Card
       .findById(req.params.id)
-      .sort ({ date: -1 })
+      .sort({ date: -1 })
       .then(dbModel => res.json(dbModel))
       .catch(err => res.status(422).json(err));
   },
@@ -25,35 +36,33 @@ module.exports = {
   create: function (req, res) {
     db.Card
       .create(req.body)
-      .then(function(dbCard){
-        return db.User.findOneAndUpdate({ _id: req.params.id}, { $push: { cardstack: dbCard._id}}, { new: true });
+      .then(function (dbCard) {
+        return db.User.findOneAndUpdate({ _id: req.params.id }, { $push: { cardstack: dbCard._id } }, { new: true });
       })
-      .then(function(dbUser) {
+      .then(function (dbUser) {
         // If the User was updated successfully, send it back to the client
         res.json(dbUser);
       })
-      .catch(function(err) {
+      .catch(function (err) {
         // If an error occurs, send it back to the client
         res.json(err);
       });
   },
 
-  // ///adds new cards to the user
+  // creates new cards specific to the user
   update: function (req, res) {
     db.Card
       .findOneAndUpdate({ _id: req.params.id }, req.body)
       .then(updateCardstack => {
-        // TODO: 
-        //pass in some id into the function
-        //add new to the cardstack
-        db.User.findById({ _id }, { $push: { cardStack: updateCardstack._id }}, { new: true });
+        //add newcard to the cardstack in the user collection
+        db.User.findById({ _id }, { $push: { cardStack: updateCardstack._id } }, { new: true });
         res.json(updateCardstack)
       })
       .catch(err => res.status(422).json(err));
   },
 
 
-  remove: function(req, res) {
+  remove: function (req, res) {
     db.Card
       .findById({ _id: req.params.id })
       .then(cardModel => {
@@ -63,5 +72,5 @@ module.exports = {
       .catch(err => res.status(422).json(err));
   }
 
-  
+
 };

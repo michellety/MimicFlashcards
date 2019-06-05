@@ -53,6 +53,7 @@ class Practice extends Component {
   render() {
     return (
       <Container fluid>
+        <section className="m-5 p-3">
         <Row>
           <Col size="md-2">
             <button><Link to="/cards">← Create New Cards</Link></button>
@@ -72,8 +73,8 @@ class Practice extends Component {
             <NextBtn onClick={this.nextCard} />
           </Col>
         </Row>
-
-       {/* <Footer/>  */}
+        
+        </section>
       </Container>
     );
   }

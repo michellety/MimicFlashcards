@@ -16,7 +16,7 @@ function App() {
   return (
     <UserProvider>
       <Router>
-        <div>
+        <div className="h-100">
           <Nav />
           <Switch>
             <Route exact path="/" component={Home} />
