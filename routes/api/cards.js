@@ -12,6 +12,5 @@ router.route("/:id")
   .get(cardsController.findById)
   .post(cardsController.update)
   .delete(cardsController.remove);
-  // .get(cardsController.findUserCards)
 
 module.exports = router;
