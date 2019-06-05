@@ -20,9 +20,9 @@ class Cards extends Component {
 
   state = {
     cards: [],
-    translated: "", 
+    translated: "",
     target: "",
-    text:""
+    text: ""
   };
 
   componentDidMount() {
@@ -72,7 +72,7 @@ class Cards extends Component {
   handleTargetChange = (event) => {
     const { value } = event.target;
     this.setState({
-      target: value 
+      target: value
     });
   }
 
@@ -87,12 +87,12 @@ class Cards extends Component {
   //   event.preventDefault();
 
   //   const { target, text } = this.state;
-    
+
   //   axios.post("/api/translate", {text, target}, {
   //     headers: {
   //       "Authorization": `Bearer ${localStorage.getItem('id_token')}`
   //     }}).then(res => this.setState({translated: res.data}))
-  
+
   // }
 
   handleTranslation = (event) => {
@@ -104,8 +104,8 @@ class Cards extends Component {
       .catch(err => console.log(err))
   }
 
-  
-///////////////////////////////////////////////
+
+  ///////////////////////////////////////////////
 
   render() {
     return (
@@ -118,8 +118,8 @@ class Cards extends Component {
               <Row>
                 <Col size="md-6 sm-12">
                   <Jumbotron>
-                    <h1>Review for {user.email}</h1>
-                    <button className="btn-block"><Link to={"/practice"}>Practice here</Link></button>
+                    <h1 className="mb-5 pb-5">Review for {user.email}</h1>
+                    <div className="pt-4"><button className="btn-block"><Link to={"/practice"}>Practice here</Link></button></div>
                   </Jumbotron>
                 </Col>
 
@@ -129,7 +129,7 @@ class Cards extends Component {
                     <form>
                       <h4>Select a language</h4>
 
-                      <Radio value={this.state.target} onChange={this.handleTargetChange}/>    
+                      <Radio value={this.state.target} onChange={this.handleTargetChange} />
 
                       <Input
                         value={this.state.text}
@@ -139,7 +139,7 @@ class Cards extends Component {
                       />
 
                       <FormBtn
-                        disabled={!(this.state.text)} 
+                        disabled={!(this.state.text)}
                         onClick={this.handleTranslation}>
                         Translate
                       </FormBtn>
@@ -154,7 +154,7 @@ class Cards extends Component {
                       />
 
                       <FormBtn
-                        disabled={!(this.state.text && this.state.translated)} 
+                        disabled={!(this.state.text && this.state.translated)}
                         onClick={this.handleFormSubmit}>
                         Submit
                       </FormBtn>
@@ -166,7 +166,6 @@ class Cards extends Component {
 
               <Row>
                 <Col size="m-12 sm-12">
-                  {/* <div className="card m-5"> */}
                   <Jumbotron>
                     <h3 className="text-center">Card Stack</h3>
                     <div className="cardstack">
@@ -186,9 +185,8 @@ class Cards extends Component {
                           ))}
                         </GridArea>
                       ) : <p>Card stack is empty!</p>}
-                    </div></Jumbotron>
-                  {/* </div> */}
-
+                    </div>
+                  </Jumbotron>
                 </Col>
               </Row>
             </Container>)

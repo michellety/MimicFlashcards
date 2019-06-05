@@ -7,28 +7,27 @@ function Nav() {
   
   return (
 
-
     <UserContext.Consumer>
       {({ user }) => (
-        <nav className="navbar navbar-expand-md justify-content-center">
+        
+        <nav className="navbar navbar-expand-lg justify-content-center">
           <a href="/cards" className="navbar-brand d-flex w-50 mr-auto">Mimic</a>
-          <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsingNavbar3">
-            <span className="navbar-toggler-icon"></span>
+          <button id="toggle" className="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsingNavbar3">
+            <span className="navbar-toggler-icon">------</span>
           </button>
  
           {user ? (
+            // if there is a valid user logged in, show navbar with logout option
             <div className="navbar-collapse collapse w-100" id="collapsingNavbar3">
-              {/* <div className="greeting">Welcome, {user.email}</div> */}
               <ul className="nav navbar-nav ml-auto w-100 justify-content-end">
                 <li className="nav-item">
                   <a className="nav-link" href="/" onClick={() => this.onLogout()}>Log-out </a>
                 </li>
-              </ul>
-              
+              </ul>              
             </div>
 
           ) : (
-
+              //if there in not a valid user logged in, show navbar with signup and login options
               <div className="navbar-collapse collapse w-100" id="collapsingNavbar3">
                 <ul className="nav navbar-nav ml-auto w-100 justify-content-end">
                   <li className="nav-item">
@@ -42,6 +41,7 @@ function Nav() {
             )}
         </nav>
       )}
+
     </UserContext.Consumer>
   );
 }

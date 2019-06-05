@@ -14,3 +14,7 @@
     color: lightgray;
     text-align: center;
 }
+
+#toggle {
+    background: rgba(255, 255, 255, 0.459);
+}
