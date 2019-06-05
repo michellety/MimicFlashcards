@@ -2,26 +2,30 @@ const db = require("../models");
 
 // Defining methods for the cardsController
 module.exports = {
-  findAll: function (req, res) {
+  findUserCards: function (req, res) {
 
-  //   db.User
-  //     .findById({ _id: req.params.id })
-  //     .populate("cardstack")
-  //     .then(function (dbUser) { res.json(dbUser) }
-  //       .catch(function (err) {
-  //         // If an error occurs, send it back to the client
-  //         res.json(err);
-  //       }))
-  // },
+    console.log(req.query.userId);
+    db.User
+      .findById(req.query.userId)
+      .populate("cardstack")
+      .then(function (dbUser) {
+         dbUser ?  res.json(dbUser.cardstack) : res.json([]) 
+        })
+      .catch(function (err) {
+        // If an error occurs, send it back to the client
+        res.json(err);
+      })
+  },
 
 
   ///change this to pull cards only associated with user Id 
-    db.Card
-      .find(req.query)
-      .sort({ date: -1 })
-      .then(dbModel => res.json(dbModel))
-      .catch(err => res.status(422).json(err));
-  },
+  // console.log(req.query)
+  //   db.Card
+  //     .find(req.query)
+  //     .sort({ date: -1 })
+  //     .then(dbModel => res.json(dbModel))
+  //     .catch(err => res.status(422).json(err));
+  // },
 
   //finds card bases on card ID
   findById: function (req, res) {

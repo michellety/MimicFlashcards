@@ -34,7 +34,8 @@ class Cards extends Component {
   }
 
   loadCards = (token) => {
-    API.getCardsForUser(token)
+    const { user } = this.context;
+    API.getCardsForUser(token, user.id)
       .then(res =>
         this.setState({ cards: res.data, text: "", translated: "" })
       )

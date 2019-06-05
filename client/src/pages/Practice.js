@@ -25,12 +25,12 @@ class Practice extends Component {
       this.props.history.push("/login")
     } else {
       this.getCurrentCard(user.token);
-    }
-   
+    } 
   }
 
   getCurrentCard = (token) => {
-    API.getCardsForUser(token)
+    const { user } = this.context;
+    API.getCardsForUser(token, user.id)
       .then(res => {
         console.log(res.data);
         this.setState({ cards: res.data, text: "", translated: "", currentCard: this.getRandomCard(res.data) })

@@ -4,7 +4,7 @@ const cardsController = require("../../controllers/cardsController");
 // Matches with "/api/cards"
 router.route("/")
 //get all cardstack for the user logged in
-  .get(cardsController.findAll);
+  .get(cardsController.findUserCards);
 
 // Matches with "/api/cards/:id"
 router.route("/:id")
@@ -12,5 +12,6 @@ router.route("/:id")
   .get(cardsController.findById)
   .post(cardsController.update)
   .delete(cardsController.remove);
+  // .get(cardsController.findUserCards)
 
 module.exports = router;
