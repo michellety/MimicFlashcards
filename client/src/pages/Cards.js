@@ -9,11 +9,6 @@ import { Redirect } from 'react-router-dom';
 import UserContext from "../utils/UserContext";
 import { GridArea, GridItem } from "../components/Cardstack";
 import Radio from "../components/Radio";
-// import {RadioBlock, Radio} from "../components/Radio";
-// import translate from '../translations';
-// import quickstart from "../translations";
-// import axios from "axios";
-
 
 class Cards extends Component {
   static contextType = UserContext;
