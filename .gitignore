@@ -1,2 +1,3 @@
 node_modules
 .env
+GOOGLE_APPLICATION_CREDENTIALS = /Users/michelletyson/Downloads/Mimic-1eebe7709e7f.json

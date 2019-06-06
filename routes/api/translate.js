@@ -7,7 +7,7 @@ router.route("/")
   .post(async function (req, res) {
       console.log(req.body)
     // Imports the Google Cloud client library
-   const projectId = 'mimic-1559172589981'
+   const projectId = 'mimic-1559172589981';
       
     const { text, target } = req.body;
     // Instantiates a client

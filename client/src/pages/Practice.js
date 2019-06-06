@@ -53,7 +53,7 @@ class Practice extends Component {
   render() {
     return (
       <Container fluid>
-        <section className="m-5 p-3">
+        <section className="mb-5 pb-5">
         <Row>
           <Col size="md-2">
             <button><Link to="/cards">← Create New Cards</Link></button>
