@@ -27,9 +27,9 @@ module.exports = {
               error: "Email and password must match"
             });
           } else {
-            const { email, _id: id } = dbModel;
-            const token = jwt.sign({ email, id }, process.env.SERVER_SECRET);
-            return res.json({ id: dbModel._id, email: dbModel.email, userName, token })
+            const { email, _id: id, userName } = dbModel;
+            const token = jwt.sign({ email, id, userName }, process.env.SERVER_SECRET);
+            return res.json({ id: dbModel._id, email: dbModel.email, userName: dbModel.userName, token })
           }
         })
       })
@@ -50,9 +50,4 @@ module.exports = {
         .catch(err => res.status(422).json(err));
     })
   },
-
-  // logout: function () {
-  //   localStorage.removeItem("id_token");
-  //   window.location.reload("/");
-  // }
 };

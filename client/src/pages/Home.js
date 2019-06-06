@@ -10,28 +10,41 @@ class Home extends Component {
         return (
             <div ClassName="landing">
                 <div className="splash">
-                    <ul className="options">
-                        <li><Link to="/signup">New user: Sign up here</Link></li>
-                        <li><Link to="/login">Current user: Sign in here</Link></li>
-                    </ul>
+
                 </div>
                 <div className="intro">
                     <div className="about">
-                        <h2>Efficiently learn useful foreign language phrases by creating custom flashcards!</h2>
-
-                        <h2>Make the perfect phrase guide</h2>
                         <div className="b">
+                            <div>
+                                <h2>Design custom flashcards to efficiently mimic new languages!</h2>
+                                <p>This is a personalized flashcard generator with translations powered by Google Translate.</p>
+                                <p>Create an account to begin building, reviewing, and saving your cardstack.</p>
+                                <ul className="options">
+                                    <li><Link to="/signup">New user :<span className="emphasize"> Sign up here</span></Link></li>
+                                    <li><Link to="/login">Current user :<span className="emphasize"> Sign in here</span></Link></li>
+                                </ul>
+                            </div>
+                        </div>
+
+                        <div className="b">
+                            <div>
+                                <h2>Make the perfect phrase guide</h2>
+                                <p>Guidelines for how to use this website: </p>
+                                <p>Choose a language, enter a word or phrase in english, then translate.</p>
+                                <p>If the translation is as desired, added the flashcard to the stack.</p>
+                            </div>
                             <GifPlayer />
                         </div>
-                        <p>Choose a language, enter a word or phrase in english, then translate.</p>
-                        <p>If the translation is as desired, added the flashcard to the stack.</p>
 
-                        <h2>Click Practice to review the custom study guide.</h2>
                         <div className="b">
+                            <div>
+                                <h2>Review your cardstack</h2>
+                                <p>Click Practice to study from the custom study guide.</p>
+                                <p>Hover the cursor to see the translation.</p>
+                                <p>Clicking the next button randomly selects another flashcard.</p>
+                            </div>
                             <Player />
                         </div>
-                        <p>Hover the cursor to see the translation.</p>
-                        <p>Clicking the next button randomly selects another flashcard.</p>
                     </div>
                 </div>
             </div>

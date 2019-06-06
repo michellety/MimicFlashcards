@@ -12,7 +12,6 @@ import Radio from "../components/Radio";
 
 class Cards extends Component {
   static contextType = UserContext;
-
   state = {
     cards: [],
     translated: "",
@@ -72,25 +71,6 @@ class Cards extends Component {
     });
   }
 
-  ///////////////translate////////////////////
-  //////when clicked, use value from radio button and set equal to target
-  ///value of this.state.text set equal to text 
-  //use text and target values in the translations function 
-  //use resulting translation to equal this.state.translated in the form input
-
-
-  // handleTranslation = (event) => {
-  //   event.preventDefault();
-
-  //   const { target, text } = this.state;
-
-  //   axios.post("/api/translate", {text, target}, {
-  //     headers: {
-  //       "Authorization": `Bearer ${localStorage.getItem('id_token')}`
-  //     }}).then(res => this.setState({translated: res.data}))
-
-  // }
-
   handleTranslation = (event) => {
     event.preventDefault();
     const { user } = this.context;
@@ -99,9 +79,6 @@ class Cards extends Component {
       .then(res => this.setState({ translated: res.data }))
       .catch(err => console.log(err))
   }
-
-
-  ///////////////////////////////////////////////
 
   render() {
     return (
@@ -114,7 +91,7 @@ class Cards extends Component {
               <Row>
                 <Col size="md-6 sm-12">
                   <Jumbotron>
-                    <h1 className="mb-5 pb-5">Review for {user.email}</h1>
+                    <h1 className="mb-5 pb-5">Review for {user.userName}</h1>
                     <div className="pt-4"><button className="btn-block"><Link to={"/practice"}>Practice here</Link></button></div>
                   </Jumbotron>
                 </Col>

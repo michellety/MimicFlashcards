@@ -1,22 +1,22 @@
-
 h2 {
     text-align: center;
+    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
 }
 
 p {
-    text-align: center;
-    
+    text-align: center;    
 }
 
 .b { 
-  padding: 50px 0;
-  margin-left: 50px;
-  border: 1px solid navy;
+  padding: 10px;
   border-radius: 15px;  
   text-align: center;
   position: relative;
   display: flex;
   justify-content: center;
+  background: rgba(79, 79, 116, 0.24);
+  flex-wrap: wrap;
+  margin: 40px;
 }
 
 .splash {
@@ -34,17 +34,22 @@ p {
     background-image: url("../images/stucco.jpg");
     display: block;
     align-items: center;
-    padding: 10px;
+    padding: 15px;
     min-height: 500px;
-    width: 70%; 
-    margin: auto;
-    border-radius: 15px;  
+    width: 75%; 
+    margin: 25px auto;
+    border-radius: 15px; 
 }
 
 .options {
     list-style: none;
     margin: 5px;
-    padding: 5px; 
-    float: right; 
+    padding: 10px; 
+}
+
+.emphasize {
+    font-style: italic;
+    color: navy;
+    font-size: larger;
 }
 

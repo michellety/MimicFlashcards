@@ -9,6 +9,7 @@
   cursor: pointer;  
   font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
   font-size: xx-large;
+  background-image: url("../../images/notes.jpeg");
 }
 
  .cardBody {
@@ -35,7 +36,8 @@
   background-image: url("../../images/stucco.jpg");
   border-radius: 20px;
   backface-visibility: hidden;
-  overflow: hidden;
+  overflow: scroll;
+  color: navy;
 }
 .back {
   padding: 165px;
@@ -44,10 +46,12 @@
   position: absolute;
   text-align: center;
   background-image: url("../../images/stucco.jpg");
-  filter: contrast(.65);
+  filter: contrast(.70);
   border-radius: 20px;
   backface-visibility: hidden;
+  overflow: scroll;
   transform: rotateY(180deg);
+  color: navy;
 }
 
   

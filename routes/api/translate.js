@@ -7,16 +7,15 @@ router.route("/")
   .post(async function (req, res) {
       console.log(req.body)
     // Imports the Google Cloud client library
-   const projectId = 'mimic-1559172589981';
+   const projectId = "mimics-1559792721626";
       
     const { text, target } = req.body;
     // Instantiates a client
     const translate = new Translate({projectId});
       
-    // Translates some text into the targeted language 
+    // Translates user enterd text into the targeted language selected by the radio button
     const [translation] = await translate.translate(text, target);
     res.json(translation);
-    // console.log(translation);
   });
 
 module.exports = router;

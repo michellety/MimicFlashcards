@@ -25,6 +25,14 @@ class Radio extends React.Component {
           <label className="form-check-label">Danish</label>
         </div>
         <div className="form-check form-check-inline">
+          <input className="form-check-input" type="radio" value="nl" checked={value === "nl"} onChange={onChange} />
+          <label className="form-check-label">Dutch</label>
+        </div>
+        <div className="form-check form-check-inline">
+          <input className="form-check-input" type="radio" value="pt" checked={value === "pt"} onChange={onChange} />
+          <label className="form-check-label">Portuguese</label>
+        </div>
+        <div className="form-check form-check-inline">
           <input className="form-check-input" type="radio" value="es" checked={value === "es"} onChange={onChange} />
           <label className="form-check-label">Spanish</label>
         </div>
