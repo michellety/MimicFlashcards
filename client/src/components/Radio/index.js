@@ -5,7 +5,7 @@ class Radio extends React.Component {
   constructor() {
     super();
     this.state = {
-      value: "da"
+      value: ""
     };
     this.handleChange = this.handleChange.bind(this);
   }
