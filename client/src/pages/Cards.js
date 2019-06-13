@@ -44,14 +44,14 @@ class Cards extends Component {
       .catch(err => console.log(err));
   };
 
-  handleInputChange = event => {
+  handleInputChange = (event) => {
     const { name, value } = event.target;
     this.setState({
       [name]: value
     });
   };
 
-  handleFormSubmit = event => {
+  handleFormSubmit = (event) => {
     event.preventDefault();
     const { user } = this.context;
 
