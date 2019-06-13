@@ -7,6 +7,7 @@ const FlashCard = (props) => {
       <div className="cardBody">
         <div className="front">
           <div className="text">{props.text}</div>
+          <div className="language">(Think in {props.language}!)</div>
         </div>
         <div className="back">
           <div className="translated">{props.translated}</div>

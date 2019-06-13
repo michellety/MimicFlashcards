@@ -16,7 +16,8 @@ class Cards extends Component {
     cards: [],
     translated: "",
     target: "",
-    text: ""
+    text: "",
+    language: ""
   };
 
   componentDidMount() {
@@ -31,7 +32,7 @@ class Cards extends Component {
     const { user } = this.context;
     API.getCardsForUser(token, user.id)
       .then(res =>
-        this.setState({ cards: res.data, text: "", translated: "" })
+        this.setState({ cards: res.data, text: "", translated: "", language: "" })
       )
       .catch(err => console.log(err));
   };
@@ -57,7 +58,8 @@ class Cards extends Component {
     if (this.state.text && this.state.translated) {
       API.saveCard({
         text: this.state.text,
-        translated: this.state.translated
+        translated: this.state.translated,
+        language: this.state.language
       }, user.token, user.id)
         .then(res => this.loadCards(user.token))
         .catch(err => console.log(err));
@@ -75,7 +77,16 @@ class Cards extends Component {
     event.preventDefault();
     const { user } = this.context;
     const { target, text } = this.state;
-    API.startTranslation({ target, text }, user.token)
+    if (target === "da") {
+      this.setState({language: "Danish"})
+    } else if (target ==="nl"){
+      this.setState({language: "Dutch"})
+    } else if (target ==="pt"){
+      this.setState({language: "Portuguese"})
+    } else if (target ==="es"){
+      this.setState({language: "Spanish"})
+    };
+    API.startTranslation({ target, text}, user.token)
       .then(res => this.setState({ translated: res.data }))
       .catch(err => console.log(err))
   }
