@@ -8,7 +8,7 @@ class Home extends Component {
 
     render() {
         return (
-            <div ClassName="landing">
+            <div className="landing">
                 <div className="splash">
 
                 </div>
@@ -21,7 +21,7 @@ class Home extends Component {
                                 <p>Create an account to begin building, reviewing, and saving your cardstack.</p>
                                 <ul className="options">
                                     <li><Link to="/signup">New user :<span className="emphasize"> Sign up here</span></Link></li>
-                                    <li><Link to="/login">Current user :<span className="emphasize"> Sign in here</span></Link></li>
+                                    <li><Link to="/login">Current user :<span className="emphasize"> Login here</span></Link></li>
                                 </ul>
                             </div>
                         </div>
