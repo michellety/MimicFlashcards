@@ -31,7 +31,7 @@ class Home extends Component {
                                 <h2>Make the perfect phrase guide</h2>
                                 <p>Guidelines for how to use this website: </p>
                                 <p>Choose a language, enter a word or phrase in english, then translate.</p>
-                                <p>If the translation is as desired, added the flashcard to the stack.</p>
+                                <p>If the translation is as desired, save the flashcard to the stack.</p>
                             </div>
                             <GifPlayer />
                         </div>
